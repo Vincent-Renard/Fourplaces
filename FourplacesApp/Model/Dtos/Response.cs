@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Model.Dtos
 {
@@ -19,10 +18,5 @@ namespace Model.Dtos
 	{
 		[JsonProperty("data")]
 		public T Data { get; set; }
-
-        public static explicit operator Response<T>(object v)
-        {
-            throw new NotImplementedException();
-        }
-    }
+	}
 }

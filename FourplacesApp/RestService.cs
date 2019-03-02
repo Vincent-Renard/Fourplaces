@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
@@ -22,10 +21,13 @@ namespace FourplacesApp
         private readonly String _imagesURI = "/images";
         private readonly String _commentsURI = "/images";//a mettre apres seviveuri/placesURI/{id}/
         private HttpClient client;
+        public LoginResult Tokens { get; private set; }
+       
 
         public RestService()
         {
             client = new HttpClient { MaxResponseContentBufferSize = 256000 };
+
 
         }
         public async void GetRoot()
@@ -85,7 +87,56 @@ namespace FourplacesApp
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
             return toks.Data;
+        }     
+        public async Task<LoginResult> Login(LoginRequest log_user)
+        {
+            Response<LoginResult> toks = null;
+            var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
+            var json = JsonConvert.SerializeObject(log_user);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var rep = await response.Content.ReadAsStringAsync();
+                toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
+            }
+            return toks.Data;
         }
+        public async Task<LoginResult> refreshToken(RefreshRequest request)
+        {
+            Response<LoginResult> toks = null;
+            var uri = new Uri(string.Format(this.serviceURI + this._loginRefreshURI, string.Empty));
+            var json = JsonConvert.SerializeObject(request);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var rep = await response.Content.ReadAsStringAsync();
+                toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
+            }
+            return toks.Data;
+        }
+        public async Task<UserItem> GetMe()
+        {
+            UserItem toRet = null;
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data; ;
+                }
+            }
+            catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
+
+
+            return toRet;
+
+        }
     }
 }
