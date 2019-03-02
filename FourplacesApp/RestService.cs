@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Dtos;
@@ -27,6 +28,8 @@ namespace FourplacesApp
         public RestService()
         {
             client = new HttpClient { MaxResponseContentBufferSize = 256000 };
+            Tokens = new LoginResult();
+
 
 
         }
@@ -59,6 +62,7 @@ namespace FourplacesApp
 
             try
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
@@ -73,6 +77,7 @@ namespace FourplacesApp
             return toRet;
 
         }
+
         public async Task<LoginResult> Signin(RegisterRequest user)
         {
             Response<LoginResult> toks = null;
@@ -80,13 +85,15 @@ namespace FourplacesApp
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = null;
+
             response = await client.PostAsync(uri, content);
             if (response.IsSuccessStatusCode)
             {
                 var rep = await response.Content.ReadAsStringAsync();
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
-            return toks.Data;
+            Tokens = toks.Data;
+            return Tokens;
         }     
         public async Task<LoginResult> Login(LoginRequest log_user)
         {
@@ -101,7 +108,8 @@ namespace FourplacesApp
                 var rep = await response.Content.ReadAsStringAsync();
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
-            return toks.Data;
+            Tokens = toks.Data;
+            return Tokens;
         }
         public async Task<LoginResult> refreshToken(RefreshRequest request)
         {
@@ -116,7 +124,8 @@ namespace FourplacesApp
                 var rep = await response.Content.ReadAsStringAsync();
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
-            return toks.Data;
+            Tokens = toks.Data;
+            return Tokens;
         }
         public async Task<UserItem> GetMe()
         {
@@ -124,6 +133,28 @@ namespace FourplacesApp
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             try
             {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data; ;
+                }
+            }
+            catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
+
+
+
+            return toRet;
+
+        }
+        public async Task<UserItem> PatchMe()
+        {
+            UserItem toRet = null;
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
+            try
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {

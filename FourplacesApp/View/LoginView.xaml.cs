@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
+using Model.Dtos;
 using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
@@ -77,6 +78,13 @@ namespace FourplacesApp.View
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public LoginRequest GetLoginRequest()
+        {
+            LoginRequest lr = new LoginRequest();
+            lr.Email = _username;
+            lr.Password = _password;
+            return lr;
         }
     }
 
