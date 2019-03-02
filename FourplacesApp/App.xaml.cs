@@ -13,6 +13,8 @@ namespace FourplacesApp
             InitializeComponent();
 
             MainPage = new MainPage();
+            RestService rs = new RestService();
+            rs.GetRoot();
             
         }
 
