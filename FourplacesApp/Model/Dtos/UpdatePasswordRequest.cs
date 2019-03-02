@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace TD.Api.Dtos
+namespace Model.Dtos
 {
     public class UpdatePasswordRequest
     {

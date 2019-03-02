@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TD.Api.Dtos
+namespace Model.Dtos
 {
 	public class PlaceItem
 	{

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using Model.Dtos;
 using Newtonsoft.Json;
-using TD.Api.Dtos;
-using System.Console;
 
 namespace FourplacesApp
 {
     public class RestService
     {
-        private readonly String getPlacesURI = "https://td-api.julienmialon.com/places";
+        private readonly String serviceURI = "https://td-api.julienmialon.com";
+        private readonly String getPlacesURI = "/places";
         private HttpClient client;
 
         public RestService()
@@ -21,7 +21,7 @@ namespace FourplacesApp
   
             List<PlaceItem> toRet = new List<PlaceItem>();
 
-          var uri = new Uri(string.Format(this.getPlacesURI, string.Empty));
+          var uri = new Uri(string.Format(this.serviceURI+this.getPlacesURI, string.Empty));
 
             try
             {

@@ -1,8 +1,7 @@
 using System;
 using Newtonsoft.Json;
-using TD.Api.Models;
 
-namespace TD.Api.Dtos
+namespace Model.Dtos
 {
 	public class CommentItem
 	{

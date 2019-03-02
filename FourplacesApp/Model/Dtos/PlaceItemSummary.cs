@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace TD.Api.Dtos
-{
-	public class PlaceItemSummary
+namespace Model.Dtos { 
+
+public class PlaceItemSummary
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
