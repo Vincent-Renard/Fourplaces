@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -35,9 +36,6 @@ namespace FourplacesApp
         }
         public async void GetRoot()
         {
-
-
-
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
 
             var response = await client.GetAsync(uri);
@@ -46,17 +44,11 @@ namespace FourplacesApp
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(content);
             }
-
-
-
-
-
-
         }
-        public async Task<ObservableCollection<PlaceItemSummary>> GetListPlacesAsync()
+        public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
 
-            ObservableCollection<PlaceItemSummary> toRet = new ObservableCollection<PlaceItemSummary>();
+            List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
 
@@ -67,7 +59,7 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<ObservableCollection<PlaceItemSummary>>>(content).Data; ;
+                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data; ;
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
