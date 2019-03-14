@@ -9,8 +9,8 @@ namespace FourplacesApp.ViewModel
 {
     internal class ConnectionViewModel: ViewModelBase
     {
-        private INavigation navigation;
-        private string _username;
+        private INavigation Navigation;
+        private string _email;
         private string _password;
 
         private bool _badLogin;
@@ -28,8 +28,8 @@ namespace FourplacesApp.ViewModel
         }
         public string Mail
         {
-            get => _username;
-            set => SetProperty(ref _username, value);
+            get => _email;
+            set => SetProperty(ref _email, value);
         }
 
         public string Password
@@ -40,28 +40,28 @@ namespace FourplacesApp.ViewModel
 
 
 
-        public ICommand connexion { get; set; }
-        public ICommand goToRegister { get; set; }
+        public ICommand Connexion { get; set; }
+        public ICommand GoToRegister { get; set; }
 
 
         public ConnectionViewModel(INavigation navigation)
         {
 
-            this.navigation = navigation;
-            connexion = new Command(async () => await testCoAsync());
-            goToRegister = new Command(async () => await GoRegisterAsync());
+            this.Navigation = navigation;
+            Connexion = new Command(async () => await TestCoAsync());
+            GoToRegister = new Command(async () => await GoRegisterAsync());
         }
-
-        private Task GoRegisterAsync()
+        async Task GoRegisterAsync()
         {//TODO
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new Sign());
         }
 
-        async Task testCoAsync()
+        async Task TestCoAsync()
         {
+
             LoginRequest l = new LoginRequest
             {
-                Email = _username,
+                Email = _email,
                 Password = _password
             };
             if (!(await App.rs.Login(l)))
@@ -71,7 +71,8 @@ namespace FourplacesApp.ViewModel
             }
             else
             {
-                BadLogin = true;
+                BadLogin = false;
+                //await Navigation.PushAsync(new HomePage());
             }
         }
       

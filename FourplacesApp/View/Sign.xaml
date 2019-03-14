@@ -24,23 +24,26 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
-                <Label Text="Mail" />
+            <StackLayout>
+                <Label Text="Enregistrement" />
                 <Entry Text="{Binding EMail}"
-                       Placeholder="Mail" />
+                       Placeholder="Email" />
             
                 <Entry Text="{Binding Password1}"
-                       Placeholder="Password"
+                       Placeholder="Mot de passe "
                        IsPassword="True" />
             
             <Entry Text="{Binding Password2}"
-                       Placeholder="Password"
+                       Placeholder="Répétez le mot de passe "
                        IsPassword="True" />
             
-                <Label Text="{Binding BadCredentials}" 
+               
+             
+            <Button Text="S'enregistrer" Command="ToSign"/>
+             <Label Text="{Binding BadCredentials}" 
                        IsVisible="{Binding BadLogin}" 
                        TextColor="Red" />
+
             </StackLayout>
-            <Button Grid.Row="2" Text="Auth" />
         </Grid>
 </mvvm:BaseContentPage>

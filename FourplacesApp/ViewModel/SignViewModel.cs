@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using Storm.Mvvm;
 using Xamarin.Forms;
 
@@ -6,7 +7,7 @@ namespace FourplacesApp.ViewModel
 {
     public class SignViewModel : ViewModelBase
     {
-        private INavigation navigation;
+        private INavigation Navigation;
 
   
         private bool _badLogin;
@@ -57,10 +58,11 @@ namespace FourplacesApp.ViewModel
             get => _badCredentials;
             set => SetProperty(ref _badCredentials, value);
         }
-
+        public ICommand ToSign { get; set; }
         public SignViewModel(INavigation navigation)
         {
-            this.navigation = navigation;
+            this.Navigation = navigation;
+
         }
         /*
 
@@ -72,6 +74,10 @@ namespace FourplacesApp.ViewModel
 }
 
         */
+
+
+
+
     }
 }
 
