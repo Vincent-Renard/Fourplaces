@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:local="clr-namespace:FourplacesApp"
+                      xmlns:models="clr-namespace:FourplacesApp.Model"
+                      xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                      xmlns:vm="clr-namespace:FourplacesApp.ViewModel"
+                      x:Class="FourplacesApp.Connection"
+                      BackgroundColor="{StaticResource PageBackgroundColor}"
+                      x:DataType="vm:ConnectionViewModel"
+                      >
+            <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Text="Username pls " />
+                <Entry Text="{Binding Username}"
+                       Placeholder="Username" />
+                <Entry Text="{Binding Password}"
+                       Placeholder="Password"
+                       IsPassword="True" />
+                <Label Text="Tu es mauvais " 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       TextColor="Red" />
+            </StackLayout>
+            <Button Grid.Row="2" Text="Authenticate" Command="{Binding AuthenticateCommand}" />
+        </Grid>
+     </mvvm:BaseContentPage>

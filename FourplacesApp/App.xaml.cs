@@ -8,12 +8,13 @@ namespace FourplacesApp
     public partial class App : Application
     {
 
+        public static RestService rs;
         public App()
         {
             InitializeComponent();
 
             MainPage = new MainPage();
-            RestService rs = new RestService();
+            rs = new RestService();
             rs.GetRoot();
             
         }

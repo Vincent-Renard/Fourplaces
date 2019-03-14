@@ -99,8 +99,13 @@ namespace FourplacesApp
             {
                 var rep = await response.Content.ReadAsStringAsync();
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
+                Tokens = toks.Data;
             }
-            Tokens = toks.Data;
+            else
+            {
+                return null;
+            }
+
             return Tokens;
         }
         public async Task<LoginResult> refreshToken(RefreshRequest request)
