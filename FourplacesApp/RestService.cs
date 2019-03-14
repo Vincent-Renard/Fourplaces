@@ -87,7 +87,8 @@ namespace FourplacesApp
             Tokens = toks.Data;
             return Tokens;
         }     
-        public async Task<LoginResult> Login(LoginRequest log_user)
+
+        public async Task<Boolean> Login(LoginRequest log_user)
         {
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
@@ -103,10 +104,10 @@ namespace FourplacesApp
             }
             else
             {
-                return null;
+                return false;
             }
 
-            return Tokens;
+            return true;
         }
         public async Task<LoginResult> refreshToken(RefreshRequest request)
         {

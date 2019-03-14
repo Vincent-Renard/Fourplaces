@@ -5,9 +5,19 @@
                       xmlns:models="clr-namespace:FourplacesApp.Model"
                       xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
                       xmlns:vm="clr-namespace:FourplacesApp.ViewModel"
-                      x:Class="FourplacesApp.Connection"
-                      x:DataType="vm:ConnectionViewModel"
+                      x:Class="FourplacesApp.Sign"
+                      x:DataType="vm:SignViewModel"
                       >
+
+        
+<!--       
+        {
+  "email": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "password": "string"
+}
+        -->
             <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -15,17 +25,22 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0">
-                <Label Text="Mail pls " />
-                <Entry Text="{Binding Mail}"
-                       Placeholder="Username" />
-                <Entry Text="{Binding Password}"
+                <Label Text="Mail" />
+                <Entry Text="{Binding EMail}"
+                       Placeholder="Mail" />
+            
+                <Entry Text="{Binding Password1}"
                        Placeholder="Password"
                        IsPassword="True" />
+            
+            <Entry Text="{Binding Password2}"
+                       Placeholder="Password"
+                       IsPassword="True" />
+            
                 <Label Text="{Binding BadCredentials}" 
                        IsVisible="{Binding BadLogin}" 
                        TextColor="Red" />
             </StackLayout>
             <Button Grid.Row="2" Text="Auth" />
-         <Button Grid.Row="2" Text="Go S'enregistrer" />
         </Grid>
 </mvvm:BaseContentPage>

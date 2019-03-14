@@ -6,13 +6,12 @@ using Xamarin.Forms;
 
 namespace FourplacesApp
 {
-    public partial class Connection : BaseContentPage
+    public partial class Sign : BaseContentPage
     {
-        //[XamlCompilation(XamlCompilationOptions.Compile)]
-        public Connection()
+        public Sign()
         {
             InitializeComponent();
-            BindingContext = new ConnectionViewModel(Navigation);
+            BindingContext = new SignViewModel(Navigation);
         }
     }
 }

@@ -11,10 +11,9 @@ namespace FourplacesApp
         public static RestService rs;
         public App()
         {
-            InitializeComponent();
-
-            MainPage = new MainPage();
             rs = new RestService();
+            InitializeComponent();
+            MainPage = new NavigationPage(new Connection());
             rs.GetRoot();
             
         }
