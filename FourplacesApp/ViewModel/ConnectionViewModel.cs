@@ -52,7 +52,7 @@ namespace FourplacesApp.ViewModel
             GoToRegister = new Command(async () => await GoRegisterAsync());
         }
         async Task GoRegisterAsync()
-        {//TODO
+        {
             await Navigation.PushAsync(new Sign());
         }
 
@@ -72,7 +72,7 @@ namespace FourplacesApp.ViewModel
             else
             {
                 BadLogin = false;
-                //await Navigation.PushAsync(new HomePage());
+               // await Navigation.PushAsync(new HomePage());
             }
         }
       

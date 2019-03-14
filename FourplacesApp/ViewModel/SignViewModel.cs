@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace FourplacesApp.ViewModel
         private INavigation Navigation;
 
   
-        private bool _badLogin;
+        private bool _badLogin=false;
 
         private string _email;
         private string _password1;
@@ -59,25 +60,60 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _badCredentials, value);
         }
         public ICommand ToSign { get; set; }
-        public SignViewModel(INavigation navigation)
+       
+
+         
+           public SignViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            this.ToSign = new Command(async () => await RegisterAsync());
 
         }
-        /*
 
+        async Task RegisterAsync()
         {
-  "email": "string",
-  "first_name": "string",
-  "last_name": "string",
-  "password": "string"
-}
+            BadCredentials = "";
+           
+            if (EMail.Length == 0)
+            {
+                BadCredentials = "Mail vide" + Environment.NewLine;
+                BadLogin = true;
+            }
+            if (FirstName.Length == 0)
+            {
+                BadCredentials = "Prénom vide" + Environment.NewLine;
+                BadLogin = true;
+            }
+            if (LastName.Length == 0)
+            {
+                BadCredentials = "Nom vide" + Environment.NewLine;
+                BadLogin = true;
+            }
+            if (!(Password1.Equals(Password2)))
+            {
+                BadCredentials = "Les mots de passe ne concordent pas" + Environment.NewLine;
+                BadLogin = true;
+            }
+            if(!BadLogin)
+            {
+                  
+                await Navigation.PushAsync(new Home());
+            }
+        }
+            /*
 
-        */
-
-
-
-
+    {
+    "email": "string",
+    "first_name": "string",
+    "last_name": "string",
+    "password": "string"
     }
+
+    */
+
+
+
+
+        }
 }
 

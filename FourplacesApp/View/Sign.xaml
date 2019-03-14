@@ -26,6 +26,12 @@
             </Grid.RowDefinitions>
             <StackLayout>
                 <Label Text="Enregistrement" />
+            
+              <Entry Text="{Binding FirstName}"
+                       Placeholder="Prénom" />
+            
+              <Entry Text="{Binding LastName}"
+                       Placeholder="Nom" />
                 <Entry Text="{Binding EMail}"
                        Placeholder="Email" />
             

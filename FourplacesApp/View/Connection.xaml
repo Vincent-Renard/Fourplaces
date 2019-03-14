@@ -17,7 +17,7 @@
             <StackLayout Grid.Row="0">
                 <Label Text="Connexion" />
                 <Entry Text="{Binding Mail}"
-                       Placeholder="Pseudo" />
+                       Placeholder="Mail" />
                 <Entry Text="{Binding Password}"
                        Placeholder="Mot de passe"
                        IsPassword="True" />

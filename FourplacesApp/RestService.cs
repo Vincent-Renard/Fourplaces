@@ -15,13 +15,13 @@ namespace FourplacesApp
         private readonly String serviceURI = "https://td-api.julienmialon.com";
         private readonly String _placesURI = "/places";
         private readonly String _rootURI = "/";
-        private readonly String _loginURI = "auth/login";
-        private readonly String _loginRegisterURI = "auth/register";
-        private readonly String _loginRefreshURI = "auth/refresh";
+        private readonly String _loginURI = "/auth/login";
+        private readonly String _loginRegisterURI = "/auth/register";
+        private readonly String _loginRefreshURI = "/auth/refresh";
         private readonly String _meURI = "/me";
         private readonly String _patchPasswordURI = "/me/password";
         private readonly String _imagesURI = "/images";
-        private readonly String _commentsURI = "/images";//a mettre apres seviveuri/placesURI/{id}/
+        private readonly String _commentsURI = "/images";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
         public LoginResult Tokens { get; private set; }
        
@@ -109,7 +109,7 @@ namespace FourplacesApp
 
             return true;
         }
-        public async Task<LoginResult> refreshToken(RefreshRequest request)
+        public async Task<LoginResult> RefreshToken(RefreshRequest request)
         {
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginRefreshURI, string.Empty));
@@ -131,7 +131,7 @@ namespace FourplacesApp
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             try
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
