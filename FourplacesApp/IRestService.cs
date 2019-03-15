@@ -27,7 +27,7 @@ namespace FourplacesApp
         Task<string> GetImage(int idImg);
         Task<List<PlaceItemSummary>> GetListPlacesAsync();
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
-        Task<Response> PostPlace(CreatePlaceRequest placeRequest);
+        Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
 
         Task<PlaceItem> GetPlace(int idPlace);
         Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);

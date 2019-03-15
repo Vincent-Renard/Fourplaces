@@ -146,6 +146,7 @@ namespace FourplacesApp
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
+            this.RefreshToken();
             UserItem toRet = null;
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             try
@@ -170,12 +171,14 @@ namespace FourplacesApp
         public Task<UserItem> PatchMe(UpdateProfileRequest patch_user)
         {
             //TOKEN
+            this.RefreshToken();
             throw new NotImplementedException();
         }
 
         public Task<UserItem> PatchPassword(UpdatePasswordRequest updatePassword)
         {
             //TOKEN
+            this.RefreshToken();
             throw new NotImplementedException();
         }
 
@@ -184,10 +187,35 @@ namespace FourplacesApp
             throw new NotImplementedException();
         }
 
-        public Task<Response> PostPlace(CreatePlaceRequest placeRequest)
+        public async Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest)
         {
             //TOKEN
-            throw new NotImplementedException();
+
+            this.RefreshToken();
+
+            Response retour = null;
+            string tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
+
+            var uri = new Uri(tmp);
+
+            var json = JsonConvert.SerializeObject(placeRequest);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
+            HttpResponseMessage response = await client.PostAsync(uri, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var rep = await response.Content.ReadAsStringAsync();
+                retour = JsonConvert.DeserializeObject<Response>(rep);
+     
+            }
+            return retour;
+
+        
+    
         }
 
         public async Task<PlaceItem> GetPlace(int idPlace)
@@ -208,6 +236,7 @@ namespace FourplacesApp
      
         public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
+            this.RefreshToken();
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace+this._commentsURI, string.Empty));
             client.DefaultRequestHeaders.Authorization= new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
