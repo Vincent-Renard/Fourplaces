@@ -40,6 +40,7 @@ namespace FourplacesApp
         }
         public async void GetRoot()
         {
+            Console.WriteLine("GetRoot");
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
@@ -52,7 +53,7 @@ namespace FourplacesApp
 
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
-
+            Console.WriteLine("GetListPlacesAsync");
             client = new HttpClient();
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
@@ -78,7 +79,7 @@ namespace FourplacesApp
 
         public async Task<LoginResult> Signin(RegisterRequest user)
         {
-
+            Console.WriteLine("Signin");
             Response<LoginResult> toks = null;
             String tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
 
@@ -104,6 +105,7 @@ namespace FourplacesApp
 
         public async Task<bool> Login(LoginRequest log_user)
         {
+            Console.WriteLine("Login");
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
             var json = JsonConvert.SerializeObject(log_user);
@@ -126,6 +128,7 @@ namespace FourplacesApp
 
         internal async void  RefreshToken()
         {
+            Console.WriteLine("RefreshToken");
             RefreshRequest request = new RefreshRequest
             {
                 RefreshToken = Tokens.RefreshToken
@@ -146,6 +149,7 @@ namespace FourplacesApp
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
+            Console.WriteLine("GetMe");
             this.RefreshToken();
             UserItem toRet = null;
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
@@ -170,6 +174,7 @@ namespace FourplacesApp
 
         public Task<UserItem> PatchMe(UpdateProfileRequest patch_user)
         {
+            Console.WriteLine("PatchMe");
             //TOKEN
             this.RefreshToken();
             throw new NotImplementedException();
@@ -177,6 +182,7 @@ namespace FourplacesApp
 
         public Task<UserItem> PatchPassword(UpdatePasswordRequest updatePassword)
         {
+            Console.WriteLine("PatchPassword");
             //TOKEN
             this.RefreshToken();
             throw new NotImplementedException();
@@ -184,11 +190,13 @@ namespace FourplacesApp
 
         public Task<string> GetImage(int idImg)
         {
+            Console.WriteLine("GetImage");
             throw new NotImplementedException();
         }
 
         public async Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest)
         {
+            Console.WriteLine("PostPlaceAsync");
             //TOKEN
 
             this.RefreshToken();
@@ -220,6 +228,7 @@ namespace FourplacesApp
 
         public async Task<PlaceItem> GetPlace(int idPlace)
         {
+            Console.WriteLine("GetPlace");
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI+"/"+idPlace, string.Empty));
             HttpResponseMessage response = await client.GetAsync(uri);
@@ -236,6 +245,7 @@ namespace FourplacesApp
      
         public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
+            Console.WriteLine("PostCommentAsync");
             this.RefreshToken();
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace+this._commentsURI, string.Empty));

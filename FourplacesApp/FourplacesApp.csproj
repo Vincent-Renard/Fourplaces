@@ -61,6 +61,9 @@
     <None Remove="View\Home.xaml.cs~" />
     <None Remove="RestService.cs~" />
     <None Remove="IRestService.cs~" />
+    <None Remove="ViewModel\HomeViewModel.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="IRestService.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />
