@@ -2,11 +2,11 @@
 
 using Xamarin.Forms;
 
-namespace FourplacesApp
+namespace FourplacesApp.ViewModel
 {
-    public class ListePlaces : ContentPage
+    public class HomeViewModel : ContentPage
     {
-        public ListePlaces()
+        public HomeViewModel()
         {
             Content = new StackLayout
             {

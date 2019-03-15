@@ -185,10 +185,19 @@ namespace FourplacesApp
             throw new NotImplementedException();
         }
 
-        public Task<Response> GetPlace(int idPlace)
+        public async Task<PlaceItem> GetPlace(int idPlace)
         {
-
-            throw new NotImplementedException();
+            client = new HttpClient();
+            var uri = new Uri(string.Format(this.serviceURI + this._placesURI+"/"+idPlace, string.Empty));
+            var response = await client.GetAsync(uri);
+            PlaceItem place = new PlaceItem();
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                place = JsonConvert.DeserializeObject<Response<PlaceItem>>(content).Data; ;
+            }
+            return place;
+      
         }
 
      
