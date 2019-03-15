@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace FourplacesApp
 {
-    public class RestService
+    public class RestService : IRestService
     {
         private readonly String serviceURI = "https://td-api.julienmialon.com";
         private readonly String _placesURI = "/places";
@@ -23,7 +23,7 @@ namespace FourplacesApp
         private readonly String _imagesURI = "/images";
         private readonly String _commentsURI = "/images";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
-        public LoginResult Tokens { get; private set; }
+        private LoginResult Tokens { get; set; }
        
 
         public RestService()
@@ -34,10 +34,10 @@ namespace FourplacesApp
 
 
         }
+
         public async void GetRoot()
         {
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
-
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
@@ -45,6 +45,8 @@ namespace FourplacesApp
                 Console.WriteLine(content);
             }
         }
+
+
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
 
@@ -146,26 +148,36 @@ namespace FourplacesApp
             return toRet;
 
         }
-        public async Task<UserItem> PatchMe()
+      
+
+        public Task<UserItem> PatchMe(UpdateProfileRequest patch_user)
         {
-            UserItem toRet = null;
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
-            try
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data; ;
-                }
-            }
-            catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
+            throw new NotImplementedException();
+        }
 
+        public Task<UserItem> PatchPassword(UpdatePasswordRequest updatePassword)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<string> GetImage(int idImg)
+        {
+            throw new NotImplementedException();
+        }
 
-            return toRet;
+        public Task<Response> PostPlace(CreatePlaceRequest placeRequest)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<Response> GetPlace(int idPlace)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response> PostComment(int idPlace, CreateCommentRequest commentRequest)
+        {
+            throw new NotImplementedException();
         }
     }
 }
