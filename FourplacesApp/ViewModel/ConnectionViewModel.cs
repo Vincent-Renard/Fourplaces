@@ -51,28 +51,38 @@ namespace FourplacesApp.ViewModel
             Connexion = new Command(async () => await TestCoAsync());
             GoToRegister = new Command(async () => await GoRegisterAsync());
         }
+
+
         async Task GoRegisterAsync()
         {
+            Console.WriteLine("Go register");
             await Navigation.PushAsync(new Sign());
         }
 
         async Task TestCoAsync()
         {
-
+            Console.WriteLine("Connexion...");
             LoginRequest l = new LoginRequest
             {
                 Email = _email,
                 Password = _password
             };
-            if (!(await App.rs.Login(l)))
+            if (!(await App.API.Login(l)))
             {
                 BadCredentials = "Mauvais mail/password";
                 BadLogin = true;
             }
             else
             {
+                /*
+                LoginResult t = App.API.GetToken();
+                Console.WriteLine(t.AccessToken);
+                Console.WriteLine(t.RefreshToken);
+                Console.WriteLine(t.ExpiresIn);
+                Console.WriteLine(t.TokenType);
+                */
                 BadLogin = false;
-               // await Navigation.PushAsync(new HomePage());
+                await Navigation.PushAsync(new Home());
             }
         }
       

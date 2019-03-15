@@ -53,6 +53,7 @@
     <None Remove="View\Sign.xaml~" />
     <None Remove="ViewModel\ConnectionViewModel.cs~" />
     <None Remove="ViewModel\SignViewModel.cs~" />
+    <None Remove="View\Home.xaml~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

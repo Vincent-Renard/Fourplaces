@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Model.Dtos;
 using Storm.Mvvm;
 using Xamarin.Forms;
 
@@ -72,44 +73,57 @@ namespace FourplacesApp.ViewModel
 
         async Task RegisterAsync()
         {
+            Console.WriteLine("Sign test button");
             BadCredentials = "";
-           
-            if (EMail.Length == 0)
+            BadLogin = false;
+            if (EMail.Equals(""))
             {
+         
                 BadCredentials = "Mail vide" + Environment.NewLine;
                 BadLogin = true;
+                Console.WriteLine("Sign : mail pb");
             }
-            if (FirstName.Length == 0)
+            if (FirstName.Equals(""))
             {
                 BadCredentials = "Prénom vide" + Environment.NewLine;
                 BadLogin = true;
+                Console.WriteLine("Sign : fn pb");
             }
-            if (LastName.Length == 0)
+            if (LastName.Equals(""))
             {
                 BadCredentials = "Nom vide" + Environment.NewLine;
                 BadLogin = true;
+                Console.WriteLine("Sign : ln pb");
             }
             if (!(Password1.Equals(Password2)))
             {
                 BadCredentials = "Les mots de passe ne concordent pas" + Environment.NewLine;
                 BadLogin = true;
+                Console.WriteLine("Sign : pswd pb");
             }
             if(!BadLogin)
             {
-                  
+                Console.WriteLine("Sign : no pb");
+                RegisterRequest rr = new RegisterRequest
+                {
+                    Email = EMail,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Password = Password1
+                };
+
+         
+                LoginResult retour = await App.API.Signin(rr);
+               
                 await Navigation.PushAsync(new Home());
+
+            }
+            else
+            {
+                Console.WriteLine("Sign : pb maj ");
             }
         }
-            /*
-
-    {
-    "email": "string",
-    "first_name": "string",
-    "last_name": "string",
-    "password": "string"
-    }
-
-    */
+          
 
 
 

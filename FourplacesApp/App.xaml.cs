@@ -8,14 +8,14 @@ namespace FourplacesApp
     public partial class App : Application
     {
 
-        public static RestService rs;
+        public static RestService API;
         public App()
         {
-            rs = new RestService();
+            API = new RestService();
             InitializeComponent();
             MainPage = new NavigationPage(new Connection());
-            rs.GetRoot();
-            
+          // MainPage = new NavigationPage(new Sign());
+
         }
 
         protected override void OnStart()

@@ -28,13 +28,16 @@ namespace FourplacesApp
 
         public RestService()
         {
-            client = new HttpClient { MaxResponseContentBufferSize = 256000 };
+            client = new HttpClient();
             Tokens = new LoginResult();
 
 
 
         }
-
+        public LoginResult GetToken()
+        {
+            return Tokens;
+        }
         public async void GetRoot()
         {
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
@@ -50,6 +53,7 @@ namespace FourplacesApp
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
 
+            client = new HttpClient();
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
@@ -70,23 +74,31 @@ namespace FourplacesApp
 
             return toRet;
 
-        }
+         }
 
         public async Task<LoginResult> Signin(RegisterRequest user)
         {
+
             Response<LoginResult> toks = null;
-            var uri = new Uri(string.Format(this.serviceURI + this._loginRegisterURI, string.Empty));
+            String tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
+
+            var uri = new Uri(tmp);
+ 
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = null;
 
-            response = await client.PostAsync(uri, content);
+            client = new HttpClient();
+            var response = await client.PostAsync(uri, content);   
+
             if (response.IsSuccessStatusCode)
             {
+
                 var rep = await response.Content.ReadAsStringAsync();
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
+                Tokens = toks.Data;
             }
-            Tokens = toks.Data;
+            else Console.WriteLine("EROORRR Sign   ");
+          
             return Tokens;
         }     
 
@@ -128,7 +140,7 @@ namespace FourplacesApp
             return Tokens;
         }
         public async Task<UserItem> GetMe()
-        {
+        {//TOKEN
             UserItem toRet = null;
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             try
@@ -152,11 +164,13 @@ namespace FourplacesApp
 
         public Task<UserItem> PatchMe(UpdateProfileRequest patch_user)
         {
+            //TOKEN
             throw new NotImplementedException();
         }
 
         public Task<UserItem> PatchPassword(UpdatePasswordRequest updatePassword)
         {
+            //TOKEN
             throw new NotImplementedException();
         }
 
@@ -167,16 +181,20 @@ namespace FourplacesApp
 
         public Task<Response> PostPlace(CreatePlaceRequest placeRequest)
         {
+            //TOKEN
             throw new NotImplementedException();
         }
 
         public Task<Response> GetPlace(int idPlace)
         {
+
             throw new NotImplementedException();
         }
 
+     
         public Task<Response> PostComment(int idPlace, CreateCommentRequest commentRequest)
         {
+            //TOKEN
             throw new NotImplementedException();
         }
     }

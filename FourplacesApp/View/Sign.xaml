@@ -8,16 +8,7 @@
                       x:Class="FourplacesApp.Sign"
                       x:DataType="vm:SignViewModel"
                       >
-
-        
-<!--       
-        {
-  "email": "string",
-  "first_name": "string",
-  "last_name": "string",
-  "password": "string"
-}
-        -->
+                     
             <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -45,7 +36,7 @@
             
                
              
-            <Button Text="S'enregistrer" Command="ToSign"/>
+            <Button Text="S'enregistrer" Command="{Binding ToSign}"/>
              <Label Text="{Binding BadCredentials}" 
                        IsVisible="{Binding BadLogin}" 
                        TextColor="Red" />
