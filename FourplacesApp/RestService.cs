@@ -21,7 +21,7 @@ namespace FourplacesApp
         private readonly String _meURI = "/me";
         private readonly String _patchPasswordURI = "/me/password";
         private readonly String _imagesURI = "/images";
-        private readonly String _commentsURI = "/images";//a mettre apres service uri/placesURI/{id}/
+        private readonly String _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
         private LoginResult Tokens { get; set; }
        
@@ -102,7 +102,7 @@ namespace FourplacesApp
             return Tokens;
         }     
 
-        public async Task<Boolean> Login(LoginRequest log_user)
+        public async Task<bool> Login(LoginRequest log_user)
         {
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
@@ -123,8 +123,13 @@ namespace FourplacesApp
 
             return true;
         }
-        public async Task<LoginResult> RefreshToken(RefreshRequest request)
+
+        internal async void  RefreshToken()
         {
+            RefreshRequest request = new RefreshRequest
+            {
+                RefreshToken = Tokens.RefreshToken
+            };
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginRefreshURI, string.Empty));
             var json = JsonConvert.SerializeObject(request);
@@ -137,7 +142,7 @@ namespace FourplacesApp
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
             Tokens = toks.Data;
-            return Tokens;
+            //return Tokens;
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
@@ -189,22 +194,37 @@ namespace FourplacesApp
         {
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI+"/"+idPlace, string.Empty));
-            var response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync(uri);
             PlaceItem place = new PlaceItem();
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                place = JsonConvert.DeserializeObject<Response<PlaceItem>>(content).Data; ;
+                place = JsonConvert.DeserializeObject<Response<PlaceItem>>(content).Data;
             }
             return place;
       
         }
 
      
-        public Task<Response> PostComment(int idPlace, CreateCommentRequest commentRequest)
+        public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
-            //TOKEN
-            throw new NotImplementedException();
+            client = new HttpClient();
+            var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace+this._commentsURI, string.Empty));
+            client.DefaultRequestHeaders.Authorization= new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
+            var json = JsonConvert.SerializeObject(commentRequest);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(uri, content);
+            /*
+              if (response.IsSuccessStatusCode)
+             {
+
+             }
+             */
+            var r = await response.Content.ReadAsStringAsync();
+            var resp = JsonConvert.DeserializeObject<Response>(r);
+
+            return resp;
         }
     }
 }

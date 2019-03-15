@@ -17,7 +17,6 @@ namespace FourplacesApp
          * USER
          */
         Task<bool> Login(LoginRequest log_user);
-        Task<LoginResult> RefreshToken(RefreshRequest request);
         Task<LoginResult> Signin(RegisterRequest user);
         Task<UserItem> GetMe();
         Task<UserItem> PatchMe(UpdateProfileRequest patch_user);
@@ -31,7 +30,7 @@ namespace FourplacesApp
         Task<Response> PostPlace(CreatePlaceRequest placeRequest);
 
         Task<PlaceItem> GetPlace(int idPlace);
-        Task<Response> PostComment(int idPlace,CreateCommentRequest commentRequest);
+        Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);
 
     }
 }

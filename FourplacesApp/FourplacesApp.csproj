@@ -54,6 +54,13 @@
     <None Remove="ViewModel\ConnectionViewModel.cs~" />
     <None Remove="ViewModel\SignViewModel.cs~" />
     <None Remove="View\Home.xaml~" />
+    <None Remove="IRestService.cs~" />
+    <None Remove="App.xaml.cs~" />
+    <None Remove="ViewModel\ConnectionViewModel.cs~" />
+    <None Remove="ViewModel\SignViewModel.cs~" />
+    <None Remove="View\Home.xaml.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="IRestService.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

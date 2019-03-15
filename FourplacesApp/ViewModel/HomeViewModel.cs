@@ -1,19 +1,15 @@
 ﻿using System;
-
+using Storm.Mvvm;
 using Xamarin.Forms;
 
 namespace FourplacesApp.ViewModel
 {
-    public class HomeViewModel : ContentPage
+    public class HomeViewModel : ViewModelBase
     {
+        private INavigation Navigation;
         public HomeViewModel()
         {
-            Content = new StackLayout
-            {
-                Children = {
-                    new Label { Text = "Hello ContentPage" }
-                }
-            };
+          
         }
     }
 }
