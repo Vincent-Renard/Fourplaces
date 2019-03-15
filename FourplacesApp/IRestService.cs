@@ -30,7 +30,7 @@ namespace FourplacesApp
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlace(CreatePlaceRequest placeRequest);
 
-        Task<Response> GetPlace(int idPlace);
+        Task<PlaceItem> GetPlace(int idPlace);
         Task<Response> PostComment(int idPlace,CreateCommentRequest commentRequest);
 
     }
