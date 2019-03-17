@@ -66,8 +66,8 @@ namespace FourplacesApp.ViewModel
          
            public SignViewModel(INavigation navigation)
         {
-            this.Navigation = navigation;
-            this.ToSign = new Command(async () => await RegisterAsync());
+            Navigation = navigation;
+            ToSign = new Command(async () => await RegisterAsync());
 
         }
 

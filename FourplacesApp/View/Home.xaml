@@ -10,9 +10,10 @@
                       >
     
         <StackLayout>
-        <ListView x:Name="ListeLieux" HasUnevenRows="True" SelectionMode="None" ItemsSource="{Binding Lieux}">
+        <ListView x:Name="PlacesList" HasUnevenRows="True" SelectionMode="None" ItemsSource="{Binding Liste}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:PlaceItemSummary">
+                 <DataTemplate x:DataType="models:PlaceItemSummary">
+                   
                     <ViewCell>
                         <Frame CornerRadius="4"
                                HasShadow="True"
@@ -31,9 +32,7 @@
                                              HorizontalOptions="FillAndExpand"
                                              VerticalOptions="Center"
                                              >
-                                    <Image Source="{Binding ImageUrl}"
-                                           HeightRequest="150"
-                                           WidthRequest="150"/>
+                                 
 
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Title}" 
@@ -41,7 +40,10 @@
                                            LineBreakMode="WordWrap" 
                                            FontSize="24"
                                            />
-                                        <Label Text="{Binding Description}" 
+                                           <Image Source="{Binding SourceImagePlace}"
+                                           HeightRequest="150"
+                                           WidthRequest="150"/>
+                                        <Label Text="{Binding DescriptionPlace}" 
                                            TextColor="Black" 
                                            LineBreakMode="WordWrap" 
                                            FontSize="18"
@@ -52,6 +54,7 @@
                             </StackLayout>
                         </Frame>
                     </ViewCell>
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
          </ListView>

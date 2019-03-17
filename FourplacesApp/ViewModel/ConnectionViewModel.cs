@@ -47,7 +47,7 @@ namespace FourplacesApp.ViewModel
         public ConnectionViewModel(INavigation navigation)
         {
 
-            this.Navigation = navigation;
+            Navigation = navigation;
             Connexion = new Command(async () => await TestCoAsync());
             GoToRegister = new Command(async () => await GoRegisterAsync());
         }
