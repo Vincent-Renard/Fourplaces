@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 using Model.Dtos;
 using Newtonsoft.Json;
 
@@ -51,11 +52,11 @@ namespace FourplacesApp
         }
 
 
-        public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
+        public async Task<ObservableCollection<PlaceItemSummary>> GetListPlacesAsync()
         {
             Console.WriteLine("GetListPlacesAsync");
             client = new HttpClient();
-            List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
+            ObservableCollection<PlaceItemSummary> toRet = new ObservableCollection<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
 
@@ -66,7 +67,7 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data; ;
+                    toRet = JsonConvert.DeserializeObject<Response<ObservableCollection<PlaceItemSummary>>>(content).Data; ;
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }

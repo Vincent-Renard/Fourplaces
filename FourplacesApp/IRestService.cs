@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Model;
 using Model.Dtos;
-
 namespace FourplacesApp
 {
     public interface IRestService
@@ -25,7 +26,7 @@ namespace FourplacesApp
          *PLACE
          */
         Task<string> GetImage(int idImg);
-        Task<List<PlaceItemSummary>> GetListPlacesAsync();
+        Task<ObservableCollection<PlaceItemSummary>> GetListPlacesAsync();
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
 

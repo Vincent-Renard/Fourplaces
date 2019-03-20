@@ -7,7 +7,7 @@ using System;
 
 namespace FourplacesApp.ViewModel
 {
-    internal class ConnectionViewModel: ViewModelBase
+    public partial class ConnectionViewModel : ViewModelBase
     {
         private INavigation Navigation;
         private string _email;

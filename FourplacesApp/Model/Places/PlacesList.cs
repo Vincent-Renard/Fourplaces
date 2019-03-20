@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model.Dtos;
+using Model;
 
 namespace FourplacesApp
 {
@@ -9,6 +9,7 @@ namespace FourplacesApp
         public List<PlaceItemSummary> Liste { get; set; }
         public PlacesList()
         {
+            Liste = new List<PlaceItemSummary>();
         }
         public PlacesList(List<PlaceItemSummary> liste)
         {

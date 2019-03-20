@@ -1,29 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Model.Dtos;
 using Storm.Mvvm;
 using Xamarin.Forms;
+using Model;
 
 namespace FourplacesApp.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
         private INavigation Navigation;
-        private string _titlePlace;
-        private string _description;
-        private List<PlaceItemSummary> _liste;
 
-        public string DescriptionPlace
-        {
-            get => _description;
-            set => SetProperty(ref _description, value);
-        }
-            public string TitlePlace
-        {
-            get => _titlePlace;
-            set => SetProperty(ref _titlePlace, value);
-        }
-        public List<PlaceItemSummary> Liste
+        private ObservableCollection<PlaceItemSummary> _liste;
+
+        public ObservableCollection<PlaceItemSummary> Liste
         {
             get => _liste;
             set => SetProperty(ref _liste, value);
@@ -32,6 +24,18 @@ namespace FourplacesApp.ViewModel
         public HomeViewModel(INavigation navigation)
         {
             Navigation = navigation;
+       
+
+
+      
+        
+
+        }
+        public async override Task OnResume()
+        {
+            await base.OnResume();
+      
+            Liste = await App.API.GetListPlacesAsync();
         }
     }
 }

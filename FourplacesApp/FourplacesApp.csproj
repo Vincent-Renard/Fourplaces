@@ -21,9 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Model\Dtos\" />
     <Folder Include="View\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Model\Places\" />
+    <Folder Include="Model\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
@@ -64,6 +65,8 @@
     <None Remove="ViewModel\HomeViewModel.cs~" />
     <None Remove="RestService.cs~" />
     <None Remove="IRestService.cs~" />
+    <None Remove="Model\PlacesList.cs~" />
+    <None Remove="Model\Dtos\PlaceItemSummary.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

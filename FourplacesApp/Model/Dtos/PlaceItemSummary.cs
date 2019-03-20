@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Model.Dtos { 
+namespace Model { 
 
 public class PlaceItemSummary
 	{
