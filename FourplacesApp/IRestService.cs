@@ -26,7 +26,7 @@ namespace FourplacesApp
          *PLACE
          */
         Task<string> GetImage(int idImg);
-        Task<ObservableCollection<PlaceItemSummary>> GetListPlacesAsync();
+        Task<List<PlaceItemSummary>> GetListPlacesAsync();
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
 

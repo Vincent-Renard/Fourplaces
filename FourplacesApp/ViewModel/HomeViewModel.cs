@@ -13,9 +13,9 @@ namespace FourplacesApp.ViewModel
     {
         private INavigation Navigation;
 
-        private ObservableCollection<PlaceItemSummary> _liste;
+        private List<PlaceItemSummary> _liste;
 
-        public ObservableCollection<PlaceItemSummary> Liste
+        public List<PlaceItemSummary> Liste
         {
             get => _liste;
             set => SetProperty(ref _liste, value);

@@ -52,11 +52,11 @@ namespace FourplacesApp
         }
 
 
-        public async Task<ObservableCollection<PlaceItemSummary>> GetListPlacesAsync()
+        public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
             Console.WriteLine("GetListPlacesAsync");
             client = new HttpClient();
-            ObservableCollection<PlaceItemSummary> toRet = new ObservableCollection<PlaceItemSummary>();
+            List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
 
@@ -67,7 +67,7 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<ObservableCollection<PlaceItemSummary>>>(content).Data; ;
+                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data; ;
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }

@@ -4,6 +4,8 @@ using Model.Dtos;
 using Xamarin.Forms;
 using Storm.Mvvm;
 using System;
+using System.Collections.Generic;
+using Model;
 
 namespace FourplacesApp.ViewModel
 {
@@ -61,7 +63,17 @@ namespace FourplacesApp.ViewModel
 
         async Task TestCoAsync()
         {
+           
             Console.WriteLine("Connexion...");
+
+
+            /*
+            List<PlaceItemSummary> listeTest = await App.API.GetListPlacesAsync();
+            foreach (PlaceItemSummary place in listeTest)
+            {
+                Console.WriteLine(place.Id + " " + place.Title+" " + place.Description + " " + place.Latitude + " "+ " " + place.ImageId+" " + place.Longitude);
+            }
+            */
             LoginRequest l = new LoginRequest
             {
                 Email = _email,

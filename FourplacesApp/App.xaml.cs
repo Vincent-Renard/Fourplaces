@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +16,9 @@ namespace FourplacesApp
         {
             API = new RestService();
             InitializeComponent();
+           
             MainPage = new NavigationPage(new Connection());
+
           // MainPage = new NavigationPage(new Sign());
 
         }
