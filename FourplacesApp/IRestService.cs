@@ -28,7 +28,7 @@ namespace FourplacesApp
         Task<LoginResult> Signin(RegisterRequest user);
         Task<UserItem> GetMe();
         Task<UserItem> PatchMe(UpdateProfileRequest patch_user);
-        Task<UserItem> PatchPassword(String updatePassword);
+        Task<UserItem> PatchPassword(string updatePassword);
         /*
          *PLACE
          */
@@ -38,6 +38,8 @@ namespace FourplacesApp
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
         Task<PlaceItem> GetPlace(int idPlace);
         Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);
-       
+
+        
+
     }
 }

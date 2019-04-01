@@ -25,7 +25,7 @@ namespace FourplacesApp
         private readonly String _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
         private LoginResult Tokens { get; set; }
-        private LoginRequest LoginUser { get; }
+        private LoginRequest LoginUser { set;  get; }
 
         public RestService()
         {
@@ -36,10 +36,8 @@ namespace FourplacesApp
 
 
         }
-        public LoginResult GetToken()
-        {
-            return Tokens;
-        }
+
+        public LoginResult Token => Tokens;
         public async void GetRoot()
         {
             Console.WriteLine("GetRoot");
@@ -180,7 +178,27 @@ namespace FourplacesApp
             Console.WriteLine("PatchMe");
             //TOKEN
             this.RefreshToken();
-            throw new NotImplementedException();
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI, String.Empty));
+            var json = JsonConvert.SerializeObject(patch_user);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpRequestMessage message = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
+            message.Content = content;
+            var response = await client.SendAsync(message);
+
+            UserItem retour = null;
+            if (response.IsSuccessStatusCode)
+            {
+
+                var rep = await response.Content.ReadAsStringAsync();
+                retour = JsonConvert.DeserializeObject<UserItem>(rep);
+              
+            }
+            return retour;
+
+
         }
 
         public async Task<UserItem> PatchPassword(string updatePassword)

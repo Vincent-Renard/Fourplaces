@@ -71,9 +71,9 @@ namespace FourplacesApp.ViewModel
             if (!BadLogin)
             {
 
-                UpdatePasswordRequest nouveauPwd = new UpdatePasswordRequest();
-                nouveauPwd.OldPassword = App.API.getLoginUser();
-                await App.API.PatchPassword(nouveauPwd);
+      
+
+                await App.API.PatchPassword(Password1);
 
                 await Navigation.PopAsync();
 
