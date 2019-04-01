@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:local="clr-namespace:FourplacesApp"
-                      xmlns:models="clr-namespace:FourplacesApp.Model"
-                      xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
-                      xmlns:vm="clr-namespace:FourplacesApp.ViewModel"
-                      x:Class="FourplacesApp.EditProfile"
-                      x:DataType="vm:EditProfileViewModel"
-                      >
-          
+<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:models="clr-namespace:FourplacesApp.Model" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.EditProfile" x:DataType="vm:EditProfileViewModel">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <Entry Text="{Binding InputFirstName}" Placeholder="{Binding LastFirstName}" />
+            <Entry Text="{Binding InputLastName}" Placeholder="{Binding LastLastName}" />
+             <Button Grid.Row="2" Text="Modifier mot de passe" Command="{Binding UpdatePassword}" />
+        </StackLayout>
+        <StackLayout Grid.Row="2">
+           
+           
+             <Button Grid.Row="2" Text="Valider les modifications" Command="{Binding Valider}" />
+        </StackLayout>
+    </Grid>
 </mvvm:BaseContentPage>

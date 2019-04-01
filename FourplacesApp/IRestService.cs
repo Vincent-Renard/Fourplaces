@@ -9,6 +9,13 @@ namespace FourplacesApp
     public interface IRestService
     {
         /*
+         * 12/13
+         * Le refresh est interne (on l'appelle jamais explicitement)
+         *        
+         */
+              
+
+        /*
          * WELCOME
          */
         void GetRoot();
@@ -21,7 +28,7 @@ namespace FourplacesApp
         Task<LoginResult> Signin(RegisterRequest user);
         Task<UserItem> GetMe();
         Task<UserItem> PatchMe(UpdateProfileRequest patch_user);
-        Task<UserItem> PatchPassword(UpdatePasswordRequest updatePassword);
+        Task<UserItem> PatchPassword(String updatePassword);
         /*
          *PLACE
          */
@@ -29,9 +36,8 @@ namespace FourplacesApp
         Task<List<PlaceItemSummary>> GetListPlacesAsync();
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
-
         Task<PlaceItem> GetPlace(int idPlace);
         Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);
-
+       
     }
 }

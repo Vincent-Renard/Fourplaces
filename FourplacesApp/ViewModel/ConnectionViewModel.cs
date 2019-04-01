@@ -50,7 +50,7 @@ namespace FourplacesApp.ViewModel
         {
 
             Navigation = navigation;
-            Connexion = new Command(async () => await TestCoAsync());
+            Connexion = new Command(async () => await ConnexionAsync());
             GoToRegister = new Command(async () => await GoRegisterAsync());
         }
 
@@ -61,7 +61,7 @@ namespace FourplacesApp.ViewModel
             await Navigation.PushAsync(new Sign());
         }
 
-        async Task TestCoAsync()
+        async Task ConnexionAsync()
         {
            
             Console.WriteLine("Connexion...");
