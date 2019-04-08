@@ -23,15 +23,18 @@ namespace FourplacesApp.ViewModel
 
         public HomeViewModel(INavigation navigation)
         {
+            Console.WriteLine("HOME VIEW MODEL");
             Navigation = navigation;
+            base.OnResume();
 
         }
         public async override Task OnResume()
         {
+            Console.WriteLine("On resume");
             await base.OnResume();
-
             Liste = await App.API.GetListPlacesAsync();
-            foreach(PlaceItemSummary place in Liste)
+            Console.WriteLine("THE LIST");
+            foreach (PlaceItemSummary place in Liste)
             {
                 Console.WriteLine(place.Title);
             }

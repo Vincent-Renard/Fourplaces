@@ -49,7 +49,7 @@ namespace FourplacesApp
 
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
-            Console.WriteLine("GetListPlacesAsync");
+            Console.WriteLine("RS GetListPlacesAsync");
             client = new HttpClient();
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
@@ -75,7 +75,7 @@ namespace FourplacesApp
 
         public async Task<LoginResult> Signin(RegisterRequest user)
         {
-            Console.WriteLine("Signin");
+            Console.WriteLine("RS Signin");
             Response<LoginResult> toks = null;
             String tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
 
@@ -102,7 +102,7 @@ namespace FourplacesApp
 
         public async Task<bool> Login(LoginRequest log_user)
         {
-            Console.WriteLine("Login");
+            Console.WriteLine("RS Login");
             Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
             var json = JsonConvert.SerializeObject(log_user);
