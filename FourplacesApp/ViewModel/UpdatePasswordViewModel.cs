@@ -19,7 +19,7 @@ namespace FourplacesApp.ViewModel
         private string _badCredentials;
 
 
-        public bool BadLogin
+        public bool BadMdp
         {
             get => _badLogin;
             set => SetProperty(ref _badLogin, value);
@@ -58,20 +58,20 @@ namespace FourplacesApp.ViewModel
         {
 
             BadCredentials = "";
-            BadLogin = false;
+            BadMdp = false;
        
               
 
             if (!(Password1.Equals(Password2)))
             {
                 BadCredentials = "Les mots de passe ne concordent pas" + Environment.NewLine;
-                BadLogin = true;
+                BadMdp = true;
                 Console.WriteLine(" pswd pb");
             }
-            if (!BadLogin)
+            if (!BadMdp)
             {
 
-      
+
 
                 await App.API.PatchPassword(Password1);
 

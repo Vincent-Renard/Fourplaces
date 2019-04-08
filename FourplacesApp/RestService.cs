@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -25,16 +24,13 @@ namespace FourplacesApp
         private readonly String _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
         private LoginResult Tokens { get; set; }
-        private LoginRequest LoginUser { set;  get; }
+        private LoginRequest LoginUser { set; get; }
 
         public RestService()
         {
             client = new HttpClient();
             Tokens = new LoginResult();
             LoginUser = new LoginRequest();
-
-
-
         }
 
         public LoginResult Token => Tokens;
@@ -127,7 +123,7 @@ namespace FourplacesApp
             return true;
         }
 
-        internal async void RefreshToken()
+        internal async Task RefreshToken()
         {
             Console.WriteLine("RefreshToken");
             RefreshRequest request = new RefreshRequest
@@ -151,7 +147,7 @@ namespace FourplacesApp
         public async Task<UserItem> GetMe()
         {//TOKEN
             Console.WriteLine("GetMe");
-            this.RefreshToken();
+            await this.RefreshToken();
             UserItem toRet = null;
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             try
@@ -177,15 +173,17 @@ namespace FourplacesApp
         {
             Console.WriteLine("PatchMe");
             //TOKEN
-            this.RefreshToken();
+            await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, String.Empty));
             var json = JsonConvert.SerializeObject(patch_user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpRequestMessage message = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
-            message.Content = content;
+            HttpRequestMessage message = new HttpRequestMessage(new HttpMethod("PATCH"), uri)
+            {
+                Content = content
+            };
             var response = await client.SendAsync(message);
 
             UserItem retour = null;
@@ -194,7 +192,7 @@ namespace FourplacesApp
 
                 var rep = await response.Content.ReadAsStringAsync();
                 retour = JsonConvert.DeserializeObject<UserItem>(rep);
-              
+
             }
             return retour;
 
@@ -208,20 +206,22 @@ namespace FourplacesApp
             UpdatePasswordRequest nouveaupwd = new UpdatePasswordRequest
             {
                 OldPassword = LoginUser.Password,
-                NewPassword=updatePassword
+                NewPassword = updatePassword
             };
-          
+
             //TOKEN
-            this.RefreshToken();
+            await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI+this._patchPasswordURI,String.Empty));
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI + this._patchPasswordURI, String.Empty));
             var json = JsonConvert.SerializeObject(nouveaupwd);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-            HttpRequestMessage message = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
-            message.Content = content;
+            HttpRequestMessage message = new HttpRequestMessage(new HttpMethod("PATCH"), uri)
+            {
+                Content = content
+            };
             var response = await client.SendAsync(message);
 
             UserItem retour = null;
@@ -231,12 +231,12 @@ namespace FourplacesApp
                 var rep = await response.Content.ReadAsStringAsync();
                 retour = JsonConvert.DeserializeObject<UserItem>(rep);
                 LoginUser.Password = nouveaupwd.NewPassword;
-            /*On met a jour les Token au cas ou le pswd est lié */
-            await Login(LoginUser);
+                /*On met a jour les Token au cas ou le pswd est lié */
+                await Login(LoginUser);
             }
             return retour;
         }
-
+        //TODO
         public Task<string> GetImage(int idImg)
         {
             Console.WriteLine("GetImage");
@@ -248,7 +248,7 @@ namespace FourplacesApp
             Console.WriteLine("PostPlaceAsync");
             //TOKEN
 
-            this.RefreshToken();
+            await this.RefreshToken();
 
             Response retour = null;
             string tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
@@ -295,7 +295,7 @@ namespace FourplacesApp
         public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
             Console.WriteLine("PostCommentAsync");
-            this.RefreshToken();
+            await this.RefreshToken();
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace + this._commentsURI, string.Empty));
 

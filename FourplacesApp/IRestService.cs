@@ -38,8 +38,5 @@ namespace FourplacesApp
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
         Task<PlaceItem> GetPlace(int idPlace);
         Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);
-
-        
-
     }
 }

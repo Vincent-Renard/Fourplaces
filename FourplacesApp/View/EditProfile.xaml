@@ -9,12 +9,10 @@
         <StackLayout Grid.Row="0">
             <Entry Text="{Binding InputFirstName}" Placeholder="{Binding LastFirstName}" />
             <Entry Text="{Binding InputLastName}" Placeholder="{Binding LastLastName}" />
-             <Button Grid.Row="2" Text="Modifier mot de passe" Command="{Binding UpdatePassword}" />
+            <Button Grid.Row="2" Text="Modifier mot de passe" Command="{Binding UpdatePassword}" />
         </StackLayout>
         <StackLayout Grid.Row="2">
-           
-           
-             <Button Grid.Row="2" Text="Valider les modifications" Command="{Binding Valider}" />
+            <Button Grid.Row="2" Text="Valider les modifications" Command="{Binding Valider}" />
         </StackLayout>
     </Grid>
 </mvvm:BaseContentPage>
