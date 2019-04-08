@@ -12,14 +12,15 @@ namespace FourplacesApp
     {
 
         public static RestService API;
+
+
         public App()
         {
+  
             API = new RestService();
             InitializeComponent();
            
-            MainPage = new NavigationPage(new Connection());
-
-          // MainPage = new NavigationPage(new Sign());
+            MainPage = new NavigationPage(new Menu());
 
         }
 

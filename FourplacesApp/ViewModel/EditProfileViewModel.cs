@@ -11,27 +11,6 @@ namespace FourplacesApp.ViewModel
     public class EditProfileViewModel : ViewModelBase
     {
         private INavigation Navigation;
-        /*
-        private string _password1;
-        private string _password2;
-
- public string Password1
-        {
-            get => _password1;
-            set => SetProperty(ref _password1, value);
-        }
-        public string Password2
-        {
-            get => _password2;
-            set => SetProperty(ref _password2, value);
-        }
-        public string BadCredentials
-        {
-            get => _badCredentials;
-            set => SetProperty(ref _badCredentials, value);
-        }
-       */
-
         private string _firstName;
         private string _lastName;
         private string _LastFirstName;

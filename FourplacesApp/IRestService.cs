@@ -9,8 +9,9 @@ namespace FourplacesApp
     public interface IRestService
     {
         /*
-         * 12/13
+         * 11/13
          * Le refresh est interne (on l'appelle jamais explicitement)
+         * Le getImg est plus ou moins interne       
          *        
          */
               

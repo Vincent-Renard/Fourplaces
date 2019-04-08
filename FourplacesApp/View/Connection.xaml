@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:models="clr-namespace:FourplacesApp.Model" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.Connection" 
+<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                      xmlns:local="clr-namespace:FourplacesApp" 
+                      xmlns:models="clr-namespace:FourplacesApp.Model" 
+                      xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" 
+                      xmlns:vm="clr-namespace:FourplacesApp.ViewModel" 
+                      x:Class="FourplacesApp.Connection" 
                       x:DataType="vm:ConnectionViewModel">
     <Grid Margin="16">
         <Grid.RowDefinitions>

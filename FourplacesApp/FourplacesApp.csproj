@@ -30,6 +30,9 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\9.1.8-0\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\9.2.0-5\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Remove="MainPage.xaml.cs~" />
@@ -70,6 +73,10 @@
     <None Remove="View\EditProfile.xaml~" />
     <None Remove="View\UpdatePassword.xaml~" />
     <None Remove="View\Home.xaml~" />
+    <None Remove="View\Home.xaml~" />
+    <None Remove="Model\Dtos\PlaceItemSummary.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="IRestService.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

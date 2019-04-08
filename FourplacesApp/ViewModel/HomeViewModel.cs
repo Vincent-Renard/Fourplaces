@@ -11,7 +11,7 @@ namespace FourplacesApp.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
-
+        private INavigation Navigation;
 
         private List<PlaceItemSummary> _liste;
 
@@ -21,9 +21,9 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _liste, value);
         }
 
-        public HomeViewModel()
+        public HomeViewModel(INavigation navigation)
         {
-
+            Navigation = navigation;
             base.OnResume();
 
         }
