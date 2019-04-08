@@ -11,7 +11,7 @@ namespace FourplacesApp.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
-        private INavigation Navigation;
+
 
         private List<PlaceItemSummary> _liste;
 
@@ -21,23 +21,19 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _liste, value);
         }
 
-        public HomeViewModel(INavigation navigation)
+        public HomeViewModel()
         {
-            Console.WriteLine("HOME VIEW MODEL");
-            Navigation = navigation;
+
             base.OnResume();
 
         }
         public async override Task OnResume()
         {
-            Console.WriteLine("On resume");
             await base.OnResume();
             Liste = await App.API.GetListPlacesAsync();
-            Console.WriteLine("THE LIST");
-            foreach (PlaceItemSummary place in Liste)
-            {
-                Console.WriteLine(place.Title);
-            }
+
+
+
         }
     }
 }

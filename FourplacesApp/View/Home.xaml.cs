@@ -11,7 +11,7 @@ namespace FourplacesApp
         public Home()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel(Navigation);
+            BindingContext = new HomeViewModel();
         }
     }
 }

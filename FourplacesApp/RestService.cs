@@ -67,7 +67,10 @@ namespace FourplacesApp
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
-
+            foreach(PlaceItemSummary place in toRet)
+            {
+                place.ImageSourceURL = GetImage(place.ImageId);
+            }
 
             return toRet;
 
@@ -237,10 +240,9 @@ namespace FourplacesApp
             return retour;
         }
         //TODO
-        public Task<string> GetImage(int idImg)
+        public string GetImage(int idImg)
         {
-            Console.WriteLine("GetImage");
-            throw new NotImplementedException();
+            return serviceURI + _imagesURI + "/" + idImg;
         }
 
         public async Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest)

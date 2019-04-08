@@ -67,6 +67,9 @@
     <None Remove="IRestService.cs~" />
     <None Remove="Model\PlacesList.cs~" />
     <None Remove="Model\Dtos\PlaceItemSummary.cs~" />
+    <None Remove="View\EditProfile.xaml~" />
+    <None Remove="View\UpdatePassword.xaml~" />
+    <None Remove="View\Home.xaml~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

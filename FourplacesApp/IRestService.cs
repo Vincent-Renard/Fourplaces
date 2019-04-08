@@ -32,7 +32,7 @@ namespace FourplacesApp
         /*
          *PLACE
          */
-        Task<string> GetImage(int idImg);
+        string GetImage(int idImg);
         Task<List<PlaceItemSummary>> GetListPlacesAsync();
         // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
