@@ -19,7 +19,7 @@ namespace FourplacesApp
         /*
          * WELCOME
          */
-        void GetRoot();
+        Task GetRoot();
 
 
         /*

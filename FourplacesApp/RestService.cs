@@ -12,19 +12,19 @@ namespace FourplacesApp
 {
     public class RestService : IRestService
     {
-        private readonly String serviceURI = "https://td-api.julienmialon.com";
-        private readonly String _placesURI = "/places";
-        private readonly String _rootURI = "/";
-        private readonly String _loginURI = "/auth/login";
-        private readonly String _loginRegisterURI = "/auth/register";
-        private readonly String _loginRefreshURI = "/auth/refresh";
-        private readonly String _meURI = "/me";
-        private readonly String _patchPasswordURI = "/me/password";
-        private readonly String _imagesURI = "/images";
-        private readonly String _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
+        private readonly string serviceURI = "https://td-api.julienmialon.com";
+        private readonly string _placesURI = "/places";
+        private readonly string _rootURI = "/";
+        private readonly string _loginURI = "/auth/login";
+        private readonly string _loginRegisterURI = "/auth/register";
+        private readonly string _loginRefreshURI = "/auth/refresh";
+        private readonly string _meURI = "/me";
+        private readonly string _patchPasswordURI = "/me/password";
+        private readonly string _imagesURI = "/images";
+        private readonly string _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
         private LoginResult Tokens { get; set; }
-        private LoginRequest LoginUser { set; get; }
+        public LoginRequest LoginUser { set; get; }
 
         public RestService()
         {
@@ -34,7 +34,7 @@ namespace FourplacesApp
         }
 
         public LoginResult Token => Tokens;
-        public async void GetRoot()
+        public async Task GetRoot()
         {
             Console.WriteLine("GetRoot");
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
@@ -62,8 +62,8 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data; ;
-                }
+                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;               
+                    }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
@@ -80,7 +80,7 @@ namespace FourplacesApp
         {
             Console.WriteLine("RS Signin");
             Response<LoginResult> toks = null;
-            String tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
+            string tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
 
             var uri = new Uri(tmp);
 
@@ -160,7 +160,7 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data; ;
+                    toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data;
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
@@ -179,7 +179,7 @@ namespace FourplacesApp
             await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI, String.Empty));
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
             var json = JsonConvert.SerializeObject(patch_user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -216,7 +216,7 @@ namespace FourplacesApp
             await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI + this._patchPasswordURI, String.Empty));
+            var uri = new Uri(string.Format(this.serviceURI + this._meURI + this._patchPasswordURI, string.Empty));
             var json = JsonConvert.SerializeObject(nouveaupwd);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -239,7 +239,6 @@ namespace FourplacesApp
             }
             return retour;
         }
-        //TODO
         public string GetImage(int idImg)
         {
             return serviceURI + _imagesURI + "/" + idImg;
@@ -248,7 +247,6 @@ namespace FourplacesApp
         public async Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest)
         {
             Console.WriteLine("PostPlaceAsync");
-            //TOKEN
 
             await this.RefreshToken();
 
