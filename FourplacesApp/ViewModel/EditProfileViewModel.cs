@@ -46,9 +46,6 @@ namespace FourplacesApp.ViewModel
 
         public EditProfileViewModel(INavigation navigation)
         {
-           
-
-
             Navigation = navigation;
             Valider =new Command(async () => await UpdateUser());
             UpdatePassword = new Command(async () => await GoUpdatePassord());
@@ -59,9 +56,6 @@ namespace FourplacesApp.ViewModel
         {
             RemplirLasts();
             await base.OnResume();
-
-
-
         }
         async Task GoUpdatePassord()
         {
