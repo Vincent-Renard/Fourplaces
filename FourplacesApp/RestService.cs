@@ -26,15 +26,11 @@ namespace FourplacesApp
         private LoginRequest loginUser;
 
         private LoginResult Tokens { get; set; }
+        public UserItem UserItem { get; set; }
         public LoginRequest LoginUser
         {
             get
             {
-                Console.WriteLine("Get login user ");
-                Console.WriteLine("M " + string.IsNullOrEmpty(loginUser.Email));
-                Console.WriteLine("M :"+ loginUser.Email);
-              
-
                 return loginUser;
             }
 
@@ -46,6 +42,7 @@ namespace FourplacesApp
             client = new HttpClient();
             Tokens = new LoginResult();
             LoginUser = new LoginRequest();
+            UserItem = new UserItem();
         }
 
         public LoginResult Token => Tokens;
@@ -139,6 +136,7 @@ namespace FourplacesApp
                 return false;
             }
             LoginUser = log_user;
+            UserItem = await GetMe();
 
             return true;
         }
@@ -162,7 +160,7 @@ namespace FourplacesApp
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
             Tokens = toks.Data;
-            //return Tokens;
+ 
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
@@ -182,8 +180,11 @@ namespace FourplacesApp
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
-
-
+            UserItem = toRet;
+            Console.WriteLine(UserItem.FirstName);
+            Console.WriteLine(UserItem.LastName);
+            Console.WriteLine(UserItem.Email);
+            Console.WriteLine(UserItem.Id);
             return toRet;
 
         }
@@ -214,6 +215,8 @@ namespace FourplacesApp
                 retour = JsonConvert.DeserializeObject<UserItem>(rep);
 
             }
+
+            UserItem = retour;
             return retour;
 
 
