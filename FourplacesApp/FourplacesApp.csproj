@@ -23,7 +23,6 @@
     <Folder Include="Model\" />
     <Folder Include="View\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="Model\Places\" />
     <Folder Include="Model\Dtos\" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +79,16 @@
     <None Remove="ViewModel\ConnectionViewModel.cs~" />
     <None Remove="ViewModel\MenuViewModel.cs~" />
     <None Remove="ViewModel\SignViewModel.cs~" />
+    <None Remove="View\EditProfile.xaml~" />
+    <None Remove="View\Menu.xaml.cs~" />
+    <None Remove="View\Menu.xaml~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="IRestService.cs~" />
+    <None Remove="App.xaml.cs~" />
+    <None Remove="ViewModel\EditProfileViewModel.cs~" />
+    <None Remove="ViewModel\MenuViewModel.cs~" />
+    <None Remove="ViewModel\HomeViewModel.cs~" />
+    <None Remove="View\EditProfile.xaml.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />
