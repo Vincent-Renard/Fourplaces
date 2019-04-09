@@ -89,6 +89,7 @@
     <None Remove="ViewModel\MenuViewModel.cs~" />
     <None Remove="ViewModel\HomeViewModel.cs~" />
     <None Remove="View\EditProfile.xaml.cs~" />
+    <None Remove="ViewModel\EditProfileViewModel.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />
