@@ -46,14 +46,21 @@ namespace FourplacesApp.ViewModel
 
         public EditProfileViewModel(INavigation navigation)
         {
-
+            RemplirLasts();
             Navigation = navigation;
             Valider =new Command(async () => await UpdateUser());
-            Valider = new Command(async () => await GoUpdatePassord());
-            RemplirLasts();
-          
-        }
+            UpdatePassword = new Command(async () => await GoUpdatePassord());
 
+        }
+        public async override Task OnResume()
+        {
+            Console.WriteLine("ON resume ");
+            RemplirLasts();
+            await base.OnResume();
+
+
+
+        }
         async Task GoUpdatePassord()
         {
            await  Navigation.PushAsync(new UpdatePassword());
@@ -71,11 +78,14 @@ namespace FourplacesApp.ViewModel
             
         }
 
-        private async void RemplirLasts()
+        private  void RemplirLasts()
         {
-            UserItem lastMe = await App.API.GetMe();
+            Console.WriteLine("Remplir Lasts");
+            UserItem lastMe =  App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;
+            Console.WriteLine(LastLastName);
+            Console.WriteLine(LastFirstName);
         }
 
     }
