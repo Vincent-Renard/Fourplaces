@@ -19,9 +19,7 @@ namespace FourplacesApp
   
             API = new RestService();
             InitializeComponent();
-           
             MainPage = new NavigationPage(new Menu());
-
         }
 
         protected override void OnStart()

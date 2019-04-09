@@ -13,5 +13,9 @@ namespace FourplacesApp
             InitializeComponent();
             BindingContext = new MenuViewModel(Navigation);
         }
+        public async void OnNoCo()
+        {
+            await DisplayAlert("Connexion requise", "Veuillez vous connecter", "OK", "Non");
+        }
     }
 }

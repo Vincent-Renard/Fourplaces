@@ -46,15 +46,17 @@ namespace FourplacesApp.ViewModel
 
         public EditProfileViewModel(INavigation navigation)
         {
-            RemplirLasts();
+           
+
+
             Navigation = navigation;
             Valider =new Command(async () => await UpdateUser());
             UpdatePassword = new Command(async () => await GoUpdatePassord());
+            RemplirLasts();
 
         }
         public async override Task OnResume()
         {
-            Console.WriteLine("ON resume ");
             RemplirLasts();
             await base.OnResume();
 
@@ -80,7 +82,7 @@ namespace FourplacesApp.ViewModel
 
         private  void RemplirLasts()
         {
-            Console.WriteLine("Remplir Lasts");
+
             UserItem lastMe =  App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;

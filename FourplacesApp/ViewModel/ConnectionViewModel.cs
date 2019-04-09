@@ -65,8 +65,12 @@ namespace FourplacesApp.ViewModel
         {
            
             Console.WriteLine("Connexion...");
-            _email = "mail@mail.com";
-            _password = "mdp";
+            if(string.IsNullOrEmpty(_email)&& string.IsNullOrEmpty(_password))
+            {
+                _email = "mail@mail.com";
+                _password = "mdp";
+            }           
+           
 
 
             LoginRequest l = new LoginRequest
@@ -80,24 +84,9 @@ namespace FourplacesApp.ViewModel
                 BadLogin = true;
             }
             else
-            {
-                /*
-                LoginResult t = App.API.GetToken();
-                Console.WriteLine(t.AccessToken);
-                Console.WriteLine(t.RefreshToken);
-                Console.WriteLine(t.ExpiresIn);
-                Console.WriteLine(t.TokenType);
-                */
+            { 
                 BadLogin = false;
-                /*
-                List<PlaceItemSummary> listeTest = await App.API.GetListPlacesAsync();
-               
-                 foreach (PlaceItemSummary place in listeTest)
-                {
-                    Console.WriteLine(place.Id + " " + place.Title + " " + place.Description + " " + place.Latitude + " " + " " + place.ImageId + " " + place.Longitude);
-                }
-                */
-                await Navigation.PushAsync(new Home());
+                await Navigation.PushAsync(new Menu());
             }
         }
       

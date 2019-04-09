@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Android.App;
-using Android.Widget;
 using Storm.Mvvm;
 using Xamarin.Forms;
 
@@ -10,25 +8,51 @@ namespace FourplacesApp.ViewModel
 {
     public class MenuViewModel : ViewModelBase
     {
-        public static string MailUser { get; set; }
+
+        public string MailUser
+        {
+            get => App.API.LoginUser.Email;
+
+        }
         private INavigation Navigation;
         public ICommand Connexion { get; set; }
         public ICommand Deconnexion { get; set; }
         public ICommand GoHome { get; set; }
         public ICommand MyProfile { get; set; }
+
+        private string needLogin;
+        private bool noCo;
+
+        public bool NoCo
+        {
+
+            get => string.IsNullOrEmpty(App.API.LoginUser.Email);
+            set => SetProperty(ref noCo, value);
+        }
+
+        public string NeedLogin
+        {
+            get => needLogin;
+            set => SetProperty(ref needLogin, value);
+        }
+
+
         public MenuViewModel(INavigation navigation)
         {
-            MailUser = "";
+            needLogin="Connection requise";
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
             Deconnexion = new Command( () =>  GoDeconnexion());
             GoHome = new Command(async () => await GoHomeAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
         }
-
-        async Task ConfirmationConnection()
+        public override Task OnResume()
         {
-            //TODO faire un toast pour exiger connection
+            if (!NoCo)
+            {
+                needLogin = "";
+            }
+            return base.OnResume();
         }
 
         async Task ConnexionAsync()
@@ -38,9 +62,9 @@ namespace FourplacesApp.ViewModel
 
         async Task GoHomeAsync()
         {
-            if (MailUser.Length == 0)
+            if (NoCo)
             {
-                //TODO mettre un toast pour exiger connection
+               
             }else
             
                 await Navigation.PushAsync(new Home());
@@ -51,18 +75,22 @@ namespace FourplacesApp.ViewModel
 
         async Task GoMyProfileAsync()
         {
-            if (MailUser.Length == 0)
-            {
-                //TODO mettre un toast pour exiger connection
-            }
-            else
+          
             
+          
+            if (!NoCo)
+            {
+               
+
                 await Navigation.PushAsync(new EditProfile());
+            }
         }
 
          void GoDeconnexion()
         {
-            MailUser = "";
+            App.API.LoginUser.Email = null;
+            App.API.LoginUser.Password = null;
+
         }
 
 

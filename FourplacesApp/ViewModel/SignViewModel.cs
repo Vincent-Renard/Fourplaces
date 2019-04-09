@@ -113,9 +113,15 @@ namespace FourplacesApp.ViewModel
                 };
 
          
-                LoginResult retour = await App.API.Signin(rr);
-               
-                await Navigation.PushAsync(new Home());
+              await App.API.Signin(rr);
+                LoginRequest l = new LoginRequest
+                {
+                    Email = rr.Email,
+                    Password = rr.Password
+                };
+
+                await App.API.Login(l);
+                await Navigation.PushAsync(new Menu());
 
             }
             else

@@ -12,7 +12,7 @@ namespace FourplacesApp
         public EditProfile()
         {
             InitializeComponent();
-            BindingContext = new ConnectionViewModel(Navigation);
+            BindingContext = new EditProfileViewModel(Navigation);
         }
     }
 }
