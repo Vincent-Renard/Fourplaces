@@ -23,8 +23,23 @@ namespace FourplacesApp
         private readonly string _imagesURI = "/images";
         private readonly string _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
+        private LoginRequest loginUser;
+
         private LoginResult Tokens { get; set; }
-        public LoginRequest LoginUser { set; get; }
+        public LoginRequest LoginUser
+        {
+            get
+            {
+                Console.WriteLine("Get login user ");
+                Console.WriteLine("M " + string.IsNullOrEmpty(loginUser.Email));
+                Console.WriteLine("M :"+ loginUser.Email);
+              
+
+                return loginUser;
+            }
+
+            set => loginUser = value;
+        }
 
         public RestService()
         {
@@ -62,12 +77,12 @@ namespace FourplacesApp
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;               
-                    }
+                    toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;
+                }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
-            foreach(PlaceItemSummary place in toRet)
+            foreach (PlaceItemSummary place in toRet)
             {
                 place.ImageSourceURL = GetImage(place.ImageId);
             }
@@ -98,8 +113,9 @@ namespace FourplacesApp
                 Tokens = toks.Data;
             }
             else Console.WriteLine("EROORRR Sign   ");
-            LoginUser.Password = user.Password;
-            LoginUser.Email = user.Email;
+    
+
+  
             return Tokens;
         }
 
@@ -122,6 +138,7 @@ namespace FourplacesApp
             {
                 return false;
             }
+            LoginUser = log_user;
 
             return true;
         }
