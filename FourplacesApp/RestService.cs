@@ -35,8 +35,6 @@ namespace FourplacesApp
             LoginUser = new LoginRequest();
             UserItem = new UserItem();
         }
-
-        public LoginResult Token => Tokens;
         public async Task GetRoot()
         {
             Console.WriteLine("GetRoot");
@@ -303,9 +301,7 @@ namespace FourplacesApp
             Console.WriteLine("PostCommentAsync");
             await this.RefreshToken();
             client = new HttpClient();
-            var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace + this._commentsURI, string.Empty));
-
-            // client.DefaultRequestHeaders.Authorization= new AuthenticationHeaderValue("Bearer", Tokens.AccessToken);
+            Uri uri = new Uri(string.Format(serviceURI + _placesURI + "/" + idPlace + _commentsURI, string.Empty));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
             var json = JsonConvert.SerializeObject(commentRequest);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

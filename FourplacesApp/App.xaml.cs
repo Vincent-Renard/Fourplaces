@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Model;
+using Model.Dtos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,18 +22,11 @@ namespace FourplacesApp
             API = new RestService();
             InitializeComponent();
             MainPage = new NavigationPage(new Menu());
+           
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-
-            Console.WriteLine("TEST REST SERVICE");
-
-
-
-
-
 
         }
 
