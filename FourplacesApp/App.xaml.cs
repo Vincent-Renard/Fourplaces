@@ -25,6 +25,14 @@ namespace FourplacesApp
         protected override void OnStart()
         {
             // Handle when your app starts
+
+            Console.WriteLine("TEST REST SERVICE");
+
+
+
+
+
+
         }
 
         protected override void OnSleep()

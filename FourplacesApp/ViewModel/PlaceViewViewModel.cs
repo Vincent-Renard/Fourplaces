@@ -1,19 +1,14 @@
 ﻿using System;
-
+using Storm.Mvvm;
 using Xamarin.Forms;
 
 namespace FourplacesApp.ViewModel
 {
-    public class PaceViewViewModel : ContentPage
+    public class PlaceViewViewModel : ViewModelBase
     {
-        public PaceViewViewModel()
+        public PlaceViewViewModel()
         {
-            Content = new StackLayout
-            {
-                Children = {
-                    new Label { Text = "Hello ContentPage" }
-                }
-            };
+           
         }
     }
 }

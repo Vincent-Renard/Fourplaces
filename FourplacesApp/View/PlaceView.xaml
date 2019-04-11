@@ -10,7 +10,7 @@
     
     
     <StackLayout>
-        <Label Text="Lieu " HorizontalOptions="CenterAndExpand" FontSize="24"  TextColor="Red"/>
+        <Label Text="Lieu" HorizontalOptions="CenterAndExpand" FontSize="24"  TextColor="Red"/>
        
     </StackLayout>
     

@@ -23,19 +23,10 @@ namespace FourplacesApp
         private readonly string _imagesURI = "/images";
         private readonly string _commentsURI = "/comments";//a mettre apres service uri/placesURI/{id}/
         private HttpClient client;
-        private LoginRequest loginUser;
-
         private LoginResult Tokens { get; set; }
+        public LoginRequest LoginUser { get; set; }
         public UserItem UserItem { get; set; }
-        public LoginRequest LoginUser
-        {
-            get
-            {
-                return loginUser;
-            }
-
-            set => loginUser = value;
-        }
+   
 
         public RestService()
         {
@@ -53,7 +44,7 @@ namespace FourplacesApp
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                string content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(content);
             }
         }
@@ -73,7 +64,7 @@ namespace FourplacesApp
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    string content = await response.Content.ReadAsStringAsync();
                     toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;
                 }
             }
@@ -91,12 +82,11 @@ namespace FourplacesApp
         public async Task<LoginResult> Signin(RegisterRequest user)
         {
             Console.WriteLine("RS Signin");
-            Response<LoginResult> toks = null;
-            string tmp = string.Format(this.serviceURI + this._loginRegisterURI, string.Empty);
+            string tmp = string.Format(serviceURI + _loginRegisterURI, string.Empty);
 
             var uri = new Uri(tmp);
 
-            var json = JsonConvert.SerializeObject(user);
+            string json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             client = new HttpClient();
@@ -105,8 +95,8 @@ namespace FourplacesApp
             if (response.IsSuccessStatusCode)
             {
 
-                var rep = await response.Content.ReadAsStringAsync();
-                toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
+                string rep = await response.Content.ReadAsStringAsync();
+                Response<LoginResult> toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
                 Tokens = toks.Data;
             }
             else Console.WriteLine("EROORRR Sign   ");
@@ -119,17 +109,14 @@ namespace FourplacesApp
         public async Task<bool> Login(LoginRequest log_user)
         {
             Console.WriteLine("RS Login");
-            Response<LoginResult> toks = null;
             var uri = new Uri(string.Format(this.serviceURI + this._loginURI, string.Empty));
             var json = JsonConvert.SerializeObject(log_user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = null;
-            response = await client.PostAsync(uri, content);
+            HttpResponseMessage response = await client.PostAsync(uri, content);
             if (response.IsSuccessStatusCode)
             {
-                var rep = await response.Content.ReadAsStringAsync();
-                toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
-                Tokens = toks.Data;
+                string rep = await response.Content.ReadAsStringAsync();
+                Tokens = JsonConvert.DeserializeObject<Response<LoginResult>>(rep).Data;
             }
             else
             {
@@ -152,8 +139,7 @@ namespace FourplacesApp
             var uri = new Uri(string.Format(this.serviceURI + this._loginRefreshURI, string.Empty));
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = null;
-            response = await client.PostAsync(uri, content);
+            HttpResponseMessage response = await client.PostAsync(uri, content);
             if (response.IsSuccessStatusCode)
             {
                 var rep = await response.Content.ReadAsStringAsync();
