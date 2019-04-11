@@ -29,6 +29,11 @@ namespace FourplacesApp.ViewModel
             get => string.IsNullOrEmpty(App.API.LoginUser.Email);
             set => SetProperty(ref noCo, value);
         }
+        public bool Co
+        {
+
+            get => !NoCo;
+        }
 
         public string NeedLogin
         {

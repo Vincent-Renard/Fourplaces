@@ -11,10 +11,10 @@
     
     <StackLayout>
         <Label Text="{Binding NeedLogin}" HorizontalOptions="CenterAndExpand" FontSize="24" IsVisible="{Binding NoCo}" TextColor="Red"/>
-        <Button Text="Connexion" Command="{Binding Connexion}" />
+        <Button Text="Connexion" Command="{Binding Connexion}" IsEnabled="{Binding NoCo}" />
         <Button Text="Mon profil" Command="{Binding MyProfile}" />
         <Button Text="Accueil" Command="{Binding GoHome}" />
-        <Button Text="Deconnexion" Command="{Binding Deconnexion}" />
+        <Button Text="Deconnexion" Command="{Binding Deconnexion}" IsEnabled="{Binding NoCo}" />
     </StackLayout>
     
 </mvvm:BaseContentPage> 

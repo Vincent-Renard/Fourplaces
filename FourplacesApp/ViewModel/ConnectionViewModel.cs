@@ -61,38 +61,8 @@ namespace FourplacesApp.ViewModel
             await Navigation.PushAsync(new Sign());
         }
 
-        async Task TestAsync()
-        {
-            Console.WriteLine(" TEST API ");
-            Console.WriteLine(" CO ");
-            LoginRequest lr = new LoginRequest
-            {
-                Email = "mail@mail.com",
-                Password = "mdp"
-            };
-            await App.API.Login(lr);
-
-            Console.WriteLine(" up date prenom nom ");
-            UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest
-            {
-                FirstName = "Fifi",
-                LastName = "Duck"
-            };
-            await App.API.PatchMe(updateProfileRequest);
-            Console.WriteLine(" up date prenom nom  result ");
-            var ui = await App.API.GetMe();
-            Console.WriteLine(ui.Email);
-            Console.WriteLine(ui.FirstName);
-            Console.WriteLine(ui.LastName);
-
-
-        }
-
         async Task ConnexionAsync()
-        {
-
-            await TestAsync();
-           
+        { 
             Console.WriteLine("Connexion...");
             if(string.IsNullOrEmpty(_email)&& string.IsNullOrEmpty(_password))
             {
