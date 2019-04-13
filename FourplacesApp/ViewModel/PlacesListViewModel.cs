@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Model.Dtos;
 using Storm.Mvvm;
 using Xamarin.Forms;
 using Model;
 
-namespace FourplacesApp.ViewModel
+namespace FourplacesApp
 {
-    public class HomeViewModel : ViewModelBase
+    public class PlacesListViewModel : ViewModelBase
     {
         private INavigation Navigation;
 
@@ -21,7 +18,7 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _liste, value);
         }
 
-        public HomeViewModel(INavigation navigation)
+        public PlacesListViewModel(INavigation navigation)
         {
             Navigation = navigation;
             base.OnResume();

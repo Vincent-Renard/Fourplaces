@@ -72,7 +72,7 @@ namespace FourplacesApp.ViewModel
                
             }else
             
-                await Navigation.PushAsync(new Home());
+                await Navigation.PushAsync(new PlacesListView());
             
            
 

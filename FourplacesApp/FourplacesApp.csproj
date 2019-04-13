@@ -90,11 +90,21 @@
     <None Remove="ViewModel\HomeViewModel.cs~" />
     <None Remove="View\EditProfile.xaml.cs~" />
     <None Remove="ViewModel\EditProfileViewModel.cs~" />
+    <None Remove="View\Menu.xaml~" />
+    <None Remove="App.xaml.cs~" />
+    <None Remove="ViewModel\ConnectionViewModel.cs~" />
+    <None Remove="ViewModel\MenuViewModel.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="View\PlacesList.xaml.cs~" />
+    <None Remove="View\PlacesListView.xaml~" />
+    <None Remove="View\PlacesListView.xaml.cs~" />
+    <None Remove="ViewModel\PlacesListViewModel.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />
     <Compile Remove="View\LoginView.xaml.cs" />
     <Compile Remove="ViewModel\Home.cs" />
+    <Compile Remove="View\PlacesListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="View\LoginView.xaml" />

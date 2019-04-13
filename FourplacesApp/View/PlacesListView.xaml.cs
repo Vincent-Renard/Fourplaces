@@ -6,12 +6,12 @@ using Xamarin.Forms;
 
 namespace FourplacesApp
 {
-    public partial class Home : BaseContentPage
+    public partial class PlacesListView : BaseContentPage
     {
-        public Home()
+        public PlacesListView()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel(Navigation);
+            BindingContext = new PlacesListViewModel(Navigation);
         }
     }
 }
