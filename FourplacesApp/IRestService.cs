@@ -14,7 +14,6 @@ namespace FourplacesApp
          * Le getImg est plus ou moins interne       
          *        
          */
-              
 
         /*
          * WELCOME

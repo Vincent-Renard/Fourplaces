@@ -10,8 +10,13 @@
     
     
     <StackLayout>
-        <Label Text="Lieu" HorizontalOptions="CenterAndExpand" FontSize="24"  TextColor="Red"/>
-       
+        <Label Text="Lieu" HorizontalOptions="CenterAndExpand" FontSize="20"  TextColor="Red"/>
+        <Label Text="{Binding PlaceSelected.Title}" HorizontalOptions="CenterAndExpand" FontSize="18"  TextColor="Black"/>
+       <ScrollView>
+            <StackLayout>
+                
+            </StackLayout>
+       </ScrollView>
     </StackLayout>
     
 </mvvm:BaseContentPage> 
