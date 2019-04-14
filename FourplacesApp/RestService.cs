@@ -87,10 +87,12 @@ namespace FourplacesApp
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
+            if (Tokens != null)
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
 
             try
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
+
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {

@@ -32,6 +32,13 @@ namespace FourplacesApp.ViewModel
             PlaceSelected = await App.API.GetPlace(_datID);
             Console.WriteLine("titre :" + PlaceSelected.Description); 
             Console.WriteLine("desc :" + PlaceSelected.Title);
+
+            Console.WriteLine("long :" + PlaceSelected.Longitude);
+            Console.WriteLine("lat :" + PlaceSelected.Latitude);
+
+
+
+
         }
     }
 }

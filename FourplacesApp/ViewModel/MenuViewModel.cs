@@ -67,11 +67,7 @@ namespace FourplacesApp.ViewModel
 
         async Task GoHomeAsync()
         {
-            if (NoCo)
-            {
-               
-            }else
-            
+          
                 await Navigation.PushAsync(new PlacesListView());
             
            

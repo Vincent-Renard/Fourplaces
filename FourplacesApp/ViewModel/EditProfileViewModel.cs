@@ -27,7 +27,7 @@ namespace FourplacesApp.ViewModel
             get => _lastName;
             set => SetProperty(ref _lastName, value);
         }
-       
+
 
 
         public string LastFirstName
@@ -47,7 +47,7 @@ namespace FourplacesApp.ViewModel
         public EditProfileViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            Valider =new Command(async () => await UpdateUser());
+            Valider = new Command(async () => await UpdateUser());
             UpdatePassword = new Command(async () => await GoUpdatePassord());
             RemplirLasts();
 
@@ -59,7 +59,7 @@ namespace FourplacesApp.ViewModel
         }
         async Task GoUpdatePassord()
         {
-           await  Navigation.PushAsync(new UpdatePassword());
+            await Navigation.PushAsync(new UpdatePassword());
         }
 
         async Task UpdateUser()
@@ -71,13 +71,13 @@ namespace FourplacesApp.ViewModel
             };
             await App.API.PatchMe(nouveau);
             RemplirLasts();
-            
+
         }
 
-        private  void RemplirLasts()
+        private void RemplirLasts()
         {
 
-            UserItem lastMe =  App.API.UserItem;
+            UserItem lastMe = App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;
             Console.WriteLine(LastLastName);

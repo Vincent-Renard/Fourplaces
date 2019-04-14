@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                      xmlns:local="clr-namespace:FourplacesApp" 
-                      xmlns:models="clr-namespace:FourplacesApp.Model" 
-                      xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" 
-                      xmlns:vm="clr-namespace:FourplacesApp.ViewModel" 
-                      x:Class="FourplacesApp.PlaceView" 
-                      x:DataType="vm:PlaceViewViewModel">
-    
-    
+<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:models="clr-namespace:FourplacesApp.Model" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.PlaceView" x:DataType="vm:PlaceViewViewModel">
     <StackLayout>
-        <Label Text="Lieu" HorizontalOptions="CenterAndExpand" FontSize="20"  TextColor="Red"/>
-        <Label Text="{Binding PlaceSelected.Title}" HorizontalOptions="CenterAndExpand" FontSize="18"  TextColor="Black"/>
-      
+        <Label Text="{Binding PlaceSelected.Title}" HorizontalOptions="CenterAndExpand" FontSize="18" TextColor="Black" />
+       <!--     -->
         
-        <ScrollView>
-            <StackLayout>
-                <!--
-                <Image Source="{Binding PlaceSelected.ImageSourceURL}" WidthRequest="FillAndExpand"/>
+             <Image Source="{Binding PlaceSelected.ImageSourceURL}"/> 
+            <!-- voir pour avoir la meme taile d'aimage sur tout les placesviews -->
                 <Label Text="{Binding PlaceSelected.Description}" 
                                            TextColor="Black" 
                                            LineBreakMode="WordWrap" 
                                            FontSize="18"
                                            MaxLines="2"/>
+          
+            
                   <Label Text="{Binding PlaceSelected.Latitude}" 
                                            TextColor="Black" 
                                            LineBreakMode="WordWrap" 
@@ -35,10 +25,12 @@
                                            FontSize="18"
                                            MaxLines="2"
                                            />
-                -->
-                
-            </StackLayout>
-       </ScrollView>
+
+        
+        <ScrollView>
+       
+           
+        </ScrollView>
+
     </StackLayout>
-    
-</mvvm:BaseContentPage> 
+</mvvm:BaseContentPage>
