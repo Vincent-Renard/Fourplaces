@@ -16,7 +16,27 @@
         
         <ScrollView>
             <StackLayout>
-                 <Image Source="{Binding PlaceSelected.ImageSourceURL}" WidthRequest="FillAndExpand"/>
+                <!--
+                <Image Source="{Binding PlaceSelected.ImageSourceURL}" WidthRequest="FillAndExpand"/>
+                <Label Text="{Binding PlaceSelected.Description}" 
+                                           TextColor="Black" 
+                                           LineBreakMode="WordWrap" 
+                                           FontSize="18"
+                                           MaxLines="2"/>
+                  <Label Text="{Binding PlaceSelected.Latitude}" 
+                                           TextColor="Black" 
+                                           LineBreakMode="WordWrap" 
+                                           FontSize="18"
+                                           MaxLines="2"
+                                           />
+                <Label Text="{Binding PlaceSelected.Longitude}" 
+                                           TextColor="Black" 
+                                           LineBreakMode="WordWrap" 
+                                           FontSize="18"
+                                           MaxLines="2"
+                                           />
+                -->
+                
             </StackLayout>
        </ScrollView>
     </StackLayout>

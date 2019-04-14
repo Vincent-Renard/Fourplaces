@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Storm.Mvvm;
 using Xamarin.Forms;
 using Model;
+using Model.Dtos;
+using System;
 
 namespace FourplacesApp
 {
@@ -24,6 +26,7 @@ namespace FourplacesApp
             base.OnResume();
 
         }
+
         public async override Task OnResume()
         {
             await base.OnResume();
@@ -31,7 +34,10 @@ namespace FourplacesApp
 
 
 
+
         }
-    }
+
+
+}
 }
 

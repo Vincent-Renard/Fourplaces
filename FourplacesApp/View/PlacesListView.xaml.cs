@@ -26,5 +26,22 @@ namespace FourplacesApp
           Console.WriteLine(thePlace.Id);
 
         }*/
+
+
+        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            var plce = (PlaceItemSummary) e.SelectedItem;
+            if (plce == null)
+            {
+              
+                return;
+            }
+                
+           
+
+            await this.Navigation.PushAsync(new PlaceView(plce.Id));
+        }
+
     }
 }

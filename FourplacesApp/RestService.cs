@@ -37,7 +37,7 @@ namespace FourplacesApp
         }
         public async Task GetRoot()
         {
-            Console.WriteLine("GetRoot");
+            Console.WriteLine("RS GetRoot");
             var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
@@ -160,7 +160,7 @@ namespace FourplacesApp
 
         internal async Task RefreshToken()
         {
-            Console.WriteLine("RefreshToken");
+            Console.WriteLine("RS RefreshToken");
             RefreshRequest request = new RefreshRequest
             {
                 RefreshToken = Tokens.RefreshToken
@@ -180,7 +180,7 @@ namespace FourplacesApp
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
-            Console.WriteLine("GetMe");
+            Console.WriteLine("RS GetMe");
             await this.RefreshToken();
             UserItem toRet = null;
             var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
@@ -208,7 +208,7 @@ namespace FourplacesApp
 
         public async Task<UserItem> PatchMe(UpdateProfileRequest patch_user)
         {
-            Console.WriteLine("PatchMe");
+            Console.WriteLine("RS PatchMe");
             //TOKEN
             await this.RefreshToken();
             client = new HttpClient();
@@ -241,7 +241,7 @@ namespace FourplacesApp
         public async Task<UserItem> PatchPassword(string updatePassword)
         {
 
-            Console.WriteLine("PatchPassword");
+            Console.WriteLine("RS PatchPassword");
             UpdatePasswordRequest nouveaupwd = new UpdatePasswordRequest
             {
                 OldPassword = LoginUser.Password,
@@ -282,7 +282,7 @@ namespace FourplacesApp
 
         public async Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest)
         {
-            Console.WriteLine("PostPlaceAsync");
+            Console.WriteLine("RS PostPlaceAsync");
 
             await this.RefreshToken();
 
@@ -313,7 +313,7 @@ namespace FourplacesApp
 
         public async Task<PlaceItem> GetPlace(int idPlace)
         {
-            Console.WriteLine("GetPlace");
+            Console.WriteLine("RS GetPlace");
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace, string.Empty));
             HttpResponseMessage response = await client.GetAsync(uri);
@@ -331,7 +331,7 @@ namespace FourplacesApp
 
         public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
-            Console.WriteLine("PostCommentAsync");
+            Console.WriteLine("RS PostCommentAsync");
             await this.RefreshToken();
             client = new HttpClient();
             Uri uri = new Uri(string.Format(serviceURI + _placesURI + "/" + idPlace + _commentsURI, string.Empty));

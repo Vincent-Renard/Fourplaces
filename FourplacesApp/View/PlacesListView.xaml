@@ -9,10 +9,16 @@
             >
     <StackLayout>
         <Label Text="HOME" HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="24" />
-        <ListView x:Name="PlacesList" HasUnevenRows="True" SelectionMode="None" ItemsSource="{Binding Liste}">
-            <ListView.ItemTemplate>
+        <ListView x:Name="PlacesList" IsPullToRefreshEnabled="true"
+                  HasUnevenRows="True" SelectionMode="Single" 
+                  ItemsSource="{Binding Liste}"
+                  ItemSelected="Handle_ItemSelected"
+                  
+                 
+                 >
+            <ListView.ItemTemplate  >
                 <DataTemplate>
-                    <ViewCell>
+                    <ViewCell >
                         <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
                                 <StackLayout Orientation="Vertical">

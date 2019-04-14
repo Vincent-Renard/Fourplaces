@@ -17,6 +17,8 @@ namespace FourplacesApp
             Id_sel = id_selected_place;
             BindingContext = new PlaceViewViewModel(Id_sel);
         }
+
+
     }
 
 }
