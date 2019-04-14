@@ -16,8 +16,10 @@ namespace Model.Dtos
 		
 		[JsonProperty("image_id")]
 		public int ImageId { get; set; }
-		
-		[JsonProperty("latitude")]
+
+        public string ImageSourceURL { get; set; }
+
+        [JsonProperty("latitude")]
 		public double Latitude { get; set; }
 		
 		[JsonProperty("longitude")]

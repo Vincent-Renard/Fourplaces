@@ -12,9 +12,11 @@
     <StackLayout>
         <Label Text="Lieu" HorizontalOptions="CenterAndExpand" FontSize="20"  TextColor="Red"/>
         <Label Text="{Binding PlaceSelected.Title}" HorizontalOptions="CenterAndExpand" FontSize="18"  TextColor="Black"/>
-       <ScrollView>
+      
+        
+        <ScrollView>
             <StackLayout>
-                
+                 <Image Source="{Binding PlaceSelected.ImageSourceURL}" WidthRequest="FillAndExpand"/>
             </StackLayout>
        </ScrollView>
     </StackLayout>

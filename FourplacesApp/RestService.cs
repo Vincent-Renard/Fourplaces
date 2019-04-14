@@ -323,6 +323,7 @@ namespace FourplacesApp
                 var content = await response.Content.ReadAsStringAsync();
                 place = JsonConvert.DeserializeObject<Response<PlaceItem>>(content).Data;
             }
+            place.ImageSourceURL= GetImage(place.ImageId);
             return place;
 
         }
