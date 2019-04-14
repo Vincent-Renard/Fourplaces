@@ -26,7 +26,7 @@ namespace FourplacesApp
         private LoginResult Tokens { get; set; }
         public LoginRequest LoginUser { get; set; }
         public UserItem UserItem { get; set; }
-   
+
 
         public RestService()
         {
@@ -77,7 +77,7 @@ namespace FourplacesApp
             }
             else
             {
-               
+
             }
         }
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
@@ -87,9 +87,7 @@ namespace FourplacesApp
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
-            if (Tokens != null)
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-
+           
             try
             {
 
@@ -132,9 +130,9 @@ namespace FourplacesApp
                 Tokens = toks.Data;
             }
             else Console.WriteLine("EROORRR Sign   ");
-    
 
-  
+
+
             return Tokens;
         }
 
@@ -178,7 +176,7 @@ namespace FourplacesApp
                 toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
             }
             Tokens = toks.Data;
- 
+
         }
         public async Task<UserItem> GetMe()
         {//TOKEN
@@ -325,7 +323,7 @@ namespace FourplacesApp
                 var content = await response.Content.ReadAsStringAsync();
                 place = JsonConvert.DeserializeObject<Response<PlaceItem>>(content).Data;
             }
-            place.ImageSourceURL= GetImage(place.ImageId);
+            place.ImageSourceURL = GetImage(place.ImageId);
             return place;
 
         }

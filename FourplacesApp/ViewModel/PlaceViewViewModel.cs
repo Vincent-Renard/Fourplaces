@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Model.Dtos;
 using Storm.Mvvm;
@@ -15,14 +16,18 @@ namespace FourplacesApp.ViewModel
             get => _datPlace;
             set => SetProperty(ref _datPlace, value);
         }
+        private List<CommentItem> _listeComms;
 
+        public List<CommentItem> ListeComms
+        {
+            get => _listeComms;
+            set => SetProperty(ref _listeComms, value);
+        }
         public PlaceViewViewModel(int id_selected_place)
         {
-            Console.WriteLine("PLACE VIEW VIEW MODEL");
-
+         
             _datID = id_selected_place;
-            Console.WriteLine("ID :"+_datID);
-
+           
             base.OnResume();
 
         }
@@ -30,15 +35,11 @@ namespace FourplacesApp.ViewModel
         {
             await base.OnResume();
             PlaceSelected = await App.API.GetPlace(_datID);
-            Console.WriteLine("titre :" + PlaceSelected.Description); 
-            Console.WriteLine("desc :" + PlaceSelected.Title);
-
-            Console.WriteLine("long :" + PlaceSelected.Longitude);
-            Console.WriteLine("lat :" + PlaceSelected.Latitude);
-
-
-
-
+            foreach(CommentItem c in PlaceSelected.Comments)
+            {
+                Console.WriteLine("A: "+c.Author.FirstName+" c:"+c.Text);
+            }
+            ListeComms = PlaceSelected.Comments;
         }
     }
 }

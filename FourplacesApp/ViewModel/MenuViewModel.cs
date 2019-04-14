@@ -76,11 +76,11 @@ namespace FourplacesApp.ViewModel
 
         async Task GoMyProfileAsync()
         {
-            if (Co)//
-            {//
-                await Navigation.PushAsync(new PlaceView(56));
-                //await Navigation.PushAsync(new EditProfile());
-            }//
+            if (Co)
+            {
+                //await Navigation.PushAsync(new PlaceView(56));
+                await Navigation.PushAsync(new EditProfile());
+            }
         }
 
          void GoDeconnexion()

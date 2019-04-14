@@ -99,6 +99,14 @@
     <None Remove="View\PlacesListView.xaml~" />
     <None Remove="View\PlacesListView.xaml.cs~" />
     <None Remove="ViewModel\PlacesListViewModel.cs~" />
+    <None Remove="View\PlacesListView.xaml~" />
+    <None Remove="View\PlaceView.xaml.cs~" />
+    <None Remove="ViewModel\PlaceViewViewModel.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="ViewModel\PlacesListViewModel.cs~" />
+    <None Remove="ViewModel\EditProfileViewModel.cs~" />
+    <None Remove="ViewModel\MenuViewModel.cs~" />
+    <None Remove="Model\Dtos\PlaceItem.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />
