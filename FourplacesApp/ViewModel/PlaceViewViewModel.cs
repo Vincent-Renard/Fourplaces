@@ -35,11 +35,15 @@ namespace FourplacesApp.ViewModel
         {
             await base.OnResume();
             PlaceSelected = await App.API.GetPlace(_datID);
+            /*
             foreach(CommentItem c in PlaceSelected.Comments)
             {
                 Console.WriteLine("A: "+c.Author.FirstName+" c:"+c.Text);
             }
+            */
+
             ListeComms = PlaceSelected.Comments;
+            ListeComms.Sort((x, y) => y.Date.CompareTo(x.Date));
         }
     }
 }
