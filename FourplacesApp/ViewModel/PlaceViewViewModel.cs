@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using Model.Dtos;
 using Storm.Mvvm;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace FourplacesApp.ViewModel
 {
     public class PlaceViewViewModel : ViewModelBase
     {
+
         private PlaceItem _datPlace;
         private int _datID;
         public PlaceItem PlaceSelected
@@ -23,11 +25,22 @@ namespace FourplacesApp.ViewModel
             get => _listeComms;
             set => SetProperty(ref _listeComms, value);
         }
+        public Map Map { get; set; }
+
         public PlaceViewViewModel(int id_selected_place)
         {
          
             _datID = id_selected_place;
-           
+            Map = new Map
+            {
+                MapType = MapType.Street,
+                //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
+
+        };
+
+            //TEST MAP
+          
+
             base.OnResume();
 
         }
@@ -35,15 +48,27 @@ namespace FourplacesApp.ViewModel
         {
             await base.OnResume();
             PlaceSelected = await App.API.GetPlace(_datID);
-            /*
-            foreach(CommentItem c in PlaceSelected.Comments)
+
+            var position = new Position(PlaceSelected.Latitude, PlaceSelected.Longitude); // Latitude, Longitude
+            var pin = new Pin
             {
-                Console.WriteLine("A: "+c.Author.FirstName+" c:"+c.Text);
-            }
-            */
+                Type = PinType.Place,
+                Position = position,
+                Label = PlaceSelected.Title
+
+            };
+            Map.Pins.Add(pin);
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(8)));
+
 
             ListeComms = PlaceSelected.Comments;
             ListeComms.Sort((x, y) => y.Date.CompareTo(x.Date));
+          
+
+
+
+
+
         }
     }
 }
