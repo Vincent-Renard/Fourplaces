@@ -18,28 +18,20 @@ namespace FourplacesApp.ViewModel
             get => _datPlace;
             set => SetProperty(ref _datPlace, value);
         }
-        private List<CommentItem> _listeComms;
 
-        public List<CommentItem> ListeComms
-        {
-            get => _listeComms;
-            set => SetProperty(ref _listeComms, value);
-        }
+        public List<CommentItem> ListeComms { get; set; }
         public Map Map { get; set; }
 
         public PlaceViewViewModel(int id_selected_place)
         {
-         
+
             _datID = id_selected_place;
             Map = new Map
             {
                 MapType = MapType.Street,
-                //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
+            };
 
-        };
 
-            //TEST MAP
-          
 
             base.OnResume();
 
@@ -58,17 +50,11 @@ namespace FourplacesApp.ViewModel
 
             };
             Map.Pins.Add(pin);
-            Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(8)));
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(App.RadiusMap)));
 
 
             ListeComms = PlaceSelected.Comments;
             ListeComms.Sort((x, y) => y.Date.CompareTo(x.Date));
-          
-
-
-
-
-
         }
     }
 }
