@@ -12,9 +12,7 @@
             <Image Source="{Binding PlaceSelected.ImageSourceURL}" />
             <!-- voir pour avoir la meme taile d'image sur tout les placesviews -->
             <Label Text="{Binding PlaceSelected.Description}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
-            <Label Text="{Binding PlaceSelected.Latitude}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
-            <Label Text="{Binding PlaceSelected.Longitude}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
-            
+           
             
              <ListView x:Name="CommentsList" IsPullToRefreshEnabled="true" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}" >
             <ListView.ItemTemplate>
@@ -22,9 +20,11 @@
                     <ViewCell>
                         <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Text}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
-
+                                <StackLayout Orientation="Vertical" >
+                                <Label Text="{Binding Author.FirstName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="WordWrap" FontSize="16" />
+                                <Label Text="{Binding Text}" TextColor="Black" LineBreakMode="WordWrap" FontSize="20" />
+                                <Label Text="{Binding Date}" TextColor="Gray" LineBreakMode="WordWrap" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" />
+                                
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
