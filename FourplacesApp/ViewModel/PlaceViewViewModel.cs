@@ -55,7 +55,7 @@ namespace FourplacesApp.ViewModel
             {
                 CommentaryOrPBHint = "Connexion requise";
             }
-            base.OnResume();
+           base.OnResume();
 
         }
         async Task AddComAsync()
@@ -71,7 +71,7 @@ namespace FourplacesApp.ViewModel
                     };
                     await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
                     CommentInput = "";
-                    await OnResume();
+                    await base.OnResume();
                 }
             }
             else

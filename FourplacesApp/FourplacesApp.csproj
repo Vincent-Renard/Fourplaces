@@ -19,6 +19,7 @@
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.4-beta" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.2.0-beta" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="3.6.0.293080" />
+    <PackageReference Include="Plugin.Permissions" Version="4.0.4-beta" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

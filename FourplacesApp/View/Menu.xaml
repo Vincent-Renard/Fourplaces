@@ -4,7 +4,7 @@
         <Label Text="{Binding NeedLogin}" HorizontalOptions="CenterAndExpand" FontSize="24" IsVisible="{Binding NoCo}" TextColor="Red" />
         <Button Text="Connexion" Command="{Binding Connexion}" IsEnabled="{Binding NoCo}" />
         <Button Text="Mon profil" Command="{Binding MyProfile}" IsEnabled="{Binding Co}" />
-        <Button Text="Accueil" Command="{Binding GoHome}" />
+        <Button Text="Accueil" Command="{Binding PlacesList}" />
         <Button Text="Deconnexion" Command="{Binding Deconnexion}" IsEnabled="{Binding Co}" />
 
     </StackLayout>

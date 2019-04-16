@@ -9,18 +9,12 @@ namespace FourplacesApp.ViewModel
     public class MenuViewModel : ViewModelBase
     {
 
-        public string MailUser
-        {
-            get => App.API.LoginUser.Email;
 
-        }
         private INavigation Navigation;
         public ICommand Connexion { get; set; }
-       
-        public ICommand GoShowPlacesList { get; set; }
+        public ICommand PlacesList { get; set; }
         public ICommand MyProfile { get; set; }
         public ICommand AddPlace { get; set; }
-       
         public ICommand Deconnexion { get; set; }
         private string needLogin;
         private bool noCo;
@@ -50,16 +44,20 @@ namespace FourplacesApp.ViewModel
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
             Deconnexion = new Command(() => GoDeconnexion());
-            GoShowPlacesList = new Command(async () => await GoShowPlacesListAsync());
+            PlacesList = new Command(async () => await GoShowPlacesListAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
+
         }
-        public override Task OnResume()
+        public override async Task OnResume()
         {
+            Console.WriteLine("OnResume");
             if (!NoCo)
             {
                 needLogin = "";
+
             }
-            return base.OnResume();
+             await base.OnResume();
+
         }
 
         async Task ConnexionAsync()

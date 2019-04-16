@@ -24,6 +24,7 @@ namespace FourplacesApp
             API = new RestService();
             InitializeComponent();
             MainPage = new NavigationPage(new Menu());
+            //MainPage = new NavigationPage(new Connection());
             defaultPosition = new Position(47.845647, 1.939958);
 
         }
@@ -48,27 +49,27 @@ namespace FourplacesApp
             try
             {
                 var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 50;
+                locator.DesiredAccuracy = 100;
                 if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled && CrossGeolocator.Current.IsGeolocationAvailable)
                 {
 
                     var ll = await locator.GetPositionAsync();
                     Position p = new Position(ll.Latitude, ll.Longitude);
 
-                    Console.WriteLine("vraie pos ");
+                    Console.WriteLine("LOCALISATION vraie pos ");
 
 
                     return p;
                 }
                 var ll2 = await locator.GetLastKnownLocationAsync();
-                Console.WriteLine("last pos ");
+                Console.WriteLine("LOCALISATION last pos ");
                 return new Position(ll2.Latitude, ll2.Longitude);
 
             }
             catch (Exception)
             {
 
-                Console.WriteLine("Error localistaion position par default donc ");
+                Console.WriteLine("LOCALISATION Error localistaion position par default donc ");
                 return defaultPosition;
             }
         }
