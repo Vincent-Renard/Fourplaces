@@ -6,6 +6,7 @@ using Model;
 using Model.Dtos;
 using System;
 using Xamarin.Forms.Maps;
+using Plugin.Geolocator;
 
 namespace FourplacesApp
 {
@@ -39,15 +40,8 @@ namespace FourplacesApp
         {
             await base.OnResume();
             Liste = await App.API.GetListPlacesAsync();
-            //var user_pos = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
-
-            Position up;//= new Position(user_pos.Latitude, user_pos.Longitude);
-            Console.WriteLine("LOCALISATION PB!!!!");
-            //var user_pos = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
-
-            //Position up;//= new Position(user_pos.Latitude, user_pos.Longitude);
-            up = new Position(47.845647, 1.939958);
-            Console.WriteLine("l " + up.Latitude + " L " + up.Longitude);
+            Position user_position = await App.LocalisationAsync();
+            Console.WriteLine("l " + user_position.Latitude + " L " + user_position.Longitude);
             foreach (PlaceItemSummary p in Liste)
             {
                 var position = new Position(p.Latitude, p.Longitude); // Latitude, Longitude
@@ -59,7 +53,7 @@ namespace FourplacesApp
 
                 };
                 MapAll.Pins.Add(pin);
-                MapAll.MoveToRegion(MapSpan.FromCenterAndRadius(up, Distance.FromKilometers(App.RadiusMap)));
+                MapAll.MoveToRegion(MapSpan.FromCenterAndRadius(user_position, Distance.FromKilometers(App.RadiusMap)));
             }
 
 
