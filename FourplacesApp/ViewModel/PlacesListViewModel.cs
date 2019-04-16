@@ -27,7 +27,7 @@ namespace FourplacesApp
             MapAll = new Map
             {
                 MapType = MapType.Street,
-               // IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
+               //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
 
             };
 
@@ -39,7 +39,16 @@ namespace FourplacesApp
         {
             await base.OnResume();
             Liste = await App.API.GetListPlacesAsync();
-            foreach(PlaceItemSummary p in Liste)
+            //var user_pos = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
+
+            Position up;//= new Position(user_pos.Latitude, user_pos.Longitude);
+            Console.WriteLine("LOCALISATION PB!!!!");
+            //var user_pos = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
+
+            //Position up;//= new Position(user_pos.Latitude, user_pos.Longitude);
+            up = new Position(47.845647, 1.939958);
+            Console.WriteLine("l " + up.Latitude + " L " + up.Longitude);
+            foreach (PlaceItemSummary p in Liste)
             {
                 var position = new Position(p.Latitude, p.Longitude); // Latitude, Longitude
                 var pin = new Pin
@@ -50,6 +59,7 @@ namespace FourplacesApp
 
                 };
                 MapAll.Pins.Add(pin);
+                MapAll.MoveToRegion(MapSpan.FromCenterAndRadius(up, Distance.FromKilometers(App.RadiusMap)));
             }
 
 

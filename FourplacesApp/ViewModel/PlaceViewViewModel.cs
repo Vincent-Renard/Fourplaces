@@ -42,7 +42,8 @@ namespace FourplacesApp.ViewModel
             PlaceSelected = await App.API.GetPlace(_datID);
 
             var position = new Position(PlaceSelected.Latitude, PlaceSelected.Longitude); // Latitude, Longitude
-            var pin = new Pin
+           
+             var pin = new Pin
             {
                 Type = PinType.Place,
                 Position = position,

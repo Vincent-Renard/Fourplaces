@@ -30,5 +30,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-         </ScrollView>
+  </ScrollView>
 </mvvm:BaseContentPage>

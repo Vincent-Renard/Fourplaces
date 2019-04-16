@@ -15,7 +15,7 @@ namespace FourplacesApp
 
         public static RestService API;
 
-        public static readonly double RadiusMap = 7.5;
+        public static readonly double RadiusMap = 2.5;
 
         public App()
         {
