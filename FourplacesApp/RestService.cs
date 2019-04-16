@@ -192,6 +192,11 @@ namespace FourplacesApp
                 {
                     var content = await response.Content.ReadAsStringAsync();
                     toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data;
+                    if (toRet.ImageId != null)
+                    {
+                        toRet.Image = GetImage(toRet.ImageId);
+                    }
+                   
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
@@ -271,7 +276,7 @@ namespace FourplacesApp
             }
             return retour;
         }
-        public string GetImage(int idImg)
+        private string GetImage(int ?idImg)
         {
             return serviceURI + _imagesURI + "/" + idImg;
         }
