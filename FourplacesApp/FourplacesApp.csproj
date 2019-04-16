@@ -108,6 +108,14 @@
     <None Remove="ViewModel\EditProfileViewModel.cs~" />
     <None Remove="ViewModel\MenuViewModel.cs~" />
     <None Remove="Model\Dtos\PlaceItem.cs~" />
+    <None Remove="Model\Dtos\UserItem.cs~" />
+    <None Remove="ViewModel\UpdatePasswordViewModel.cs~" />
+    <None Remove="ViewModel\PlaceViewViewModel.cs~" />
+    <None Remove="RestService.cs~" />
+    <None Remove="View\PlaceView.xaml.cs~" />
+    <None Remove="ViewModel\ConnectionViewModel.cs~" />
+    <None Remove="ViewModel\EditProfileViewModel.cs~" />
+    <None Remove="View\PlacesListView.xaml~" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\LoginViewModel.cs" />

@@ -6,5 +6,6 @@
         <Button Text="Mon profil" Command="{Binding MyProfile}" IsEnabled="{Binding Co}" />
         <Button Text="Accueil" Command="{Binding GoHome}" />
         <Button Text="Deconnexion" Command="{Binding Deconnexion}" IsEnabled="{Binding Co}" />
+
     </StackLayout>
 </mvvm:BaseContentPage>
