@@ -15,7 +15,7 @@ namespace FourplacesApp
 
             InitializeComponent();
             Id_sel = id_selected_place;
-            BindingContext = new PlaceViewViewModel(Id_sel);
+            BindingContext = new PlaceViewViewModel(Id_sel ,Navigation);
         }
 
 

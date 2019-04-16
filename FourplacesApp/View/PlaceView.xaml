@@ -8,7 +8,7 @@
         <Image Source="{Binding PlaceSelected.ImageSourceURL}" />
         <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0" />
         <Entry Text="{Binding CommentInput}" Placeholder="{Binding CommentaryOrPBHint}" />
-        <Button Text="Ajouter" Command="{Binding AddCommentary}" IsEnabled="{Binding Co}" />
+        <Button Text="Ajouter" Command="{Binding AddCommentary}" />
         <ListView x:Name="CommentsList" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}">
             <ListView.ItemTemplate>
                 <DataTemplate>

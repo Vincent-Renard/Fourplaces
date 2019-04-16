@@ -85,7 +85,7 @@ namespace FourplacesApp.ViewModel
             else
             {
                 BadLogin = false;
-                await Navigation.PushAsync(new Menu());
+                await Navigation.PopAsync();
             }
         }
 

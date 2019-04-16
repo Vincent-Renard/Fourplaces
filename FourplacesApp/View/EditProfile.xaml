@@ -8,6 +8,8 @@
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0">
             <Label Text="Modifier mon profil" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
+            
+            
             <Entry Text="{Binding InputFirstName}" Placeholder="{Binding LastFirstName}" />
             <Entry Text="{Binding InputLastName}" Placeholder="{Binding LastLastName}" />
             <Button Grid.Row="2" Text="Modifier mot de passe" Command="{Binding UpdatePassword}" />

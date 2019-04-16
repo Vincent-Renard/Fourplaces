@@ -12,7 +12,7 @@ namespace FourplacesApp.ViewModel
 {
     public class PlaceViewViewModel : ViewModelBase
     {
-
+        private INavigation Navigation;
         private PlaceItem _datPlace;
         private readonly int _datID;
         public PlaceItem PlaceSelected
@@ -38,8 +38,9 @@ namespace FourplacesApp.ViewModel
         public string CommentInput { get; set; }
         public string CommentaryOrPBHint { get; set; }
 
-        public PlaceViewViewModel(int id_selected_place)
+        public PlaceViewViewModel(int id_selected_place,INavigation nav)
         {
+            Navigation = nav;
             AddCommentary = new Command(async () => await AddComAsync());
             _datID = id_selected_place;
             Map = new Map
@@ -59,14 +60,23 @@ namespace FourplacesApp.ViewModel
         }
         async Task AddComAsync()
         {
-            if (!(string.IsNullOrWhiteSpace(CommentInput) || string.IsNullOrEmpty(CommentInput)))
+            if (Co)
             {
-                CreateCommentRequest createComment = new CreateCommentRequest
+
+                if (!(string.IsNullOrWhiteSpace(CommentInput) || string.IsNullOrEmpty(CommentInput)))
                 {
-                    Text = CommentInput
-                };
-                await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
-                await base.OnResume();
+                    CreateCommentRequest createComment = new CreateCommentRequest
+                    {
+                        Text = CommentInput
+                    };
+                    await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
+                    CommentInput = "";
+                    await OnResume();
+                }
+            }
+            else
+            {
+                await Navigation.PushAsync(new Connection());
             }
         }
 
