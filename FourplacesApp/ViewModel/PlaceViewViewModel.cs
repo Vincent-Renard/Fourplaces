@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Android.App;
 using Model.Dtos;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -19,23 +21,61 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _datPlace, value);
         }
 
+        public bool Co
+        {
+
+            get => !(string.IsNullOrEmpty(App.API.LoginUser.Email));
+           
+        }
+        public ICommand AddCommentary { get; set; }
         public List<CommentItem> ListeComms { get; set; }
         public Map Map { get; set; }
+        public string CommentInput
+        {
+            get;
+        }
+        public string CommentaryOrPBHint
+        {
+            get; set;
+        }
 
         public PlaceViewViewModel(int id_selected_place)
         {
-
+            AddCommentary=  new Command(async () => await AddComAsync());
             _datID = id_selected_place;
             Map = new Map
             {
                 MapType = MapType.Street,
             };
+            if (Co)
+            {
+                CommentaryOrPBHint = "Ajouter un commentaire";
+            }
+            else
+            {
+                CommentaryOrPBHint = "Connexion requise";
+
+            }
+
 
 
 
             base.OnResume();
 
         }
+
+         async Task AddComAsync()
+        {
+
+
+            CreateCommentRequest createComment = new CreateCommentRequest
+            {
+                Text = CommentInput
+            };
+           await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
+            await base.OnResume();
+        }
+
         public async override Task OnResume()
         {
             await base.OnResume();

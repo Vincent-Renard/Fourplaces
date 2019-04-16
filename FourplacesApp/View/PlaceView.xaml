@@ -15,9 +15,13 @@
             <Label Text="{Binding PlaceSelected.Description}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
            
              <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0"/>
+ 
+            <Entry Text="{Binding CommentInput}" Placeholder="CommentaryOrPBHint" />
+                     <Button Text="Àjouter" Command="{Binding AddCommentary}" IsEnabled="{Binding Co}" />
+
+            <ListView x:Name="CommentsList" IsPullToRefreshEnabled="true" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}" >
             
-             <ListView x:Name="CommentsList" IsPullToRefreshEnabled="true" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}" >
-            <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Start">

@@ -87,7 +87,7 @@ namespace FourplacesApp
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI, string.Empty));
-           
+
             try
             {
 
@@ -332,7 +332,7 @@ namespace FourplacesApp
         public async Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest)
         {
             Console.WriteLine("RS PostCommentAsync");
-            await this.RefreshToken();
+            await RefreshToken();
             client = new HttpClient();
             Uri uri = new Uri(string.Format(serviceURI + _placesURI + "/" + idPlace + _commentsURI, string.Empty));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
