@@ -16,10 +16,12 @@ namespace FourplacesApp.ViewModel
         }
         private INavigation Navigation;
         public ICommand Connexion { get; set; }
-        public ICommand Deconnexion { get; set; }
-        public ICommand GoHome { get; set; }
+       
+        public ICommand GoShowPlacesList { get; set; }
         public ICommand MyProfile { get; set; }
-
+        public ICommand AddPlace { get; set; }
+       
+        public ICommand Deconnexion { get; set; }
         private string needLogin;
         private bool noCo;
 
@@ -48,7 +50,7 @@ namespace FourplacesApp.ViewModel
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
             Deconnexion = new Command(() => GoDeconnexion());
-            GoHome = new Command(async () => await GoHomeAsync());
+            GoShowPlacesList = new Command(async () => await GoShowPlacesListAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
         }
         public override Task OnResume()
@@ -65,7 +67,7 @@ namespace FourplacesApp.ViewModel
             await Navigation.PushAsync(new Connection());
         }
 
-        async Task GoHomeAsync()
+        async Task GoShowPlacesListAsync()
         {
 
             await Navigation.PushAsync(new PlacesListView());

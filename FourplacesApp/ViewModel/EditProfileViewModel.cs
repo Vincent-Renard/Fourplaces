@@ -15,6 +15,13 @@ namespace FourplacesApp.ViewModel
         private string _lastName;
         private string _LastFirstName;
         private string _LastLastName;
+        private string _imgProfil;
+
+        public string Image
+        {
+            get => _imgProfil;
+            set => SetProperty(ref _imgProfil, value);
+        }
 
         public string InputFirstName
         {
@@ -44,14 +51,23 @@ namespace FourplacesApp.ViewModel
         public ICommand Valider { get; set; }
         public ICommand UpdatePassword { get; set; }
 
+        public ICommand ChangePicDemmand { get; set; }
+
         public EditProfileViewModel(INavigation navigation)
         {
             Navigation = navigation;
             Valider = new Command(async () => await UpdateUser());
             UpdatePassword = new Command(async () => await GoUpdatePassord());
+            ChangePicDemmand = new Command(async () => await GoUpdatePic());
             RemplirLasts();
 
         }
+
+        private Task GoUpdatePic()
+        {
+            throw new NotImplementedException();
+        }
+
         public async override Task OnResume()
         {
             RemplirLasts();
@@ -80,8 +96,10 @@ namespace FourplacesApp.ViewModel
             UserItem lastMe = App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;
+            Image = lastMe.Image;
             Console.WriteLine(LastLastName);
             Console.WriteLine(LastFirstName);
+
         }
 
     }

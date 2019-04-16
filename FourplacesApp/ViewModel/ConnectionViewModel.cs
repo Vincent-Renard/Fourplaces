@@ -4,8 +4,6 @@ using Model.Dtos;
 using Xamarin.Forms;
 using Storm.Mvvm;
 using System;
-using System.Collections.Generic;
-using Model;
 
 namespace FourplacesApp.ViewModel
 {
