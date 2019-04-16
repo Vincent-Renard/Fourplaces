@@ -179,7 +179,7 @@ namespace FourplacesApp
 
         }
         public async Task<UserItem> GetMe()
-        {//TOKEN
+        {
             Console.WriteLine("RS GetMe");
             await this.RefreshToken();
             UserItem toRet = null;
@@ -197,10 +197,6 @@ namespace FourplacesApp
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
             UserItem = toRet;
-            Console.WriteLine(UserItem.FirstName);
-            Console.WriteLine(UserItem.LastName);
-            Console.WriteLine(UserItem.Email);
-            Console.WriteLine(UserItem.Id);
             return toRet;
 
         }
@@ -313,7 +309,7 @@ namespace FourplacesApp
 
         public async Task<PlaceItem> GetPlace(int idPlace)
         {
-            Console.WriteLine("RS GetPlace");
+            Console.WriteLine("RS GetPlace "+idPlace);
             client = new HttpClient();
             var uri = new Uri(string.Format(this.serviceURI + this._placesURI + "/" + idPlace, string.Empty));
             HttpResponseMessage response = await client.GetAsync(uri);

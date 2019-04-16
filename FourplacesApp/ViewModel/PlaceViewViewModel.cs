@@ -14,30 +14,29 @@ namespace FourplacesApp.ViewModel
     {
 
         private PlaceItem _datPlace;
-        private int _datID;
+        private readonly int _datID;
         public PlaceItem PlaceSelected
         {
             get => _datPlace;
             set => SetProperty(ref _datPlace, value);
         }
 
-        public bool Co
-        {
+        public bool Co => !(string.IsNullOrEmpty(App.API.LoginUser.Email));
 
-            get => !(string.IsNullOrEmpty(App.API.LoginUser.Email));
-
-        }
         public ICommand AddCommentary { get; set; }
-        public List<CommentItem> ListeComms { get; set; }
+       
+
+        private List<CommentItem> _listeComms;
+
+        public List<CommentItem> ListeComms
+        {
+            get => _listeComms;
+            set => SetProperty(ref _listeComms, value);
+        }
+
         public Map Map { get; set; }
-        public string CommentInput
-        {
-            get; set;
-        }
-        public string CommentaryOrPBHint
-        {
-            get; set;
-        }
+        public string CommentInput { get; set; }
+        public string CommentaryOrPBHint { get; set; }
 
         public PlaceViewViewModel(int id_selected_place)
         {
@@ -45,7 +44,7 @@ namespace FourplacesApp.ViewModel
             _datID = id_selected_place;
             Map = new Map
             {
-                MapType = MapType.Street,
+                MapType = MapType.Street
             };
             if (Co)
             {
@@ -54,19 +53,12 @@ namespace FourplacesApp.ViewModel
             else
             {
                 CommentaryOrPBHint = "Connexion requise";
-
             }
-
-
-
-
             base.OnResume();
 
         }
-
         async Task AddComAsync()
         {
-
             if (!(string.IsNullOrWhiteSpace(CommentInput) || string.IsNullOrEmpty(CommentInput)))
             {
                 CreateCommentRequest createComment = new CreateCommentRequest
@@ -76,7 +68,6 @@ namespace FourplacesApp.ViewModel
                 await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
                 await base.OnResume();
             }
-
         }
 
         public async override Task OnResume()
@@ -97,13 +88,19 @@ namespace FourplacesApp.ViewModel
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(App.RadiusMap)));
 
             Console.WriteLine("Liste comms");
-            ListeComms = PlaceSelected.Comments;
-            ListeComms.Sort((x, y) => y.Date.CompareTo(x.Date));
-            Console.WriteLine("Liste comms Done [" + ListeComms.Count + "]");
-            foreach (CommentItem c in ListeComms)
+            List<CommentItem> temp = PlaceSelected.Comments;
+
+
+            temp.Sort((x, y) => y.Date.CompareTo(x.Date));
+
+            foreach (CommentItem c in temp)
             {
                 Console.WriteLine("[" + c.Author.FirstName + "] " + c.Text + " (" + c.Date + ")");
             }
+
+            ListeComms = temp;
+            Console.WriteLine("Affichage");
+
         }
     }
 }

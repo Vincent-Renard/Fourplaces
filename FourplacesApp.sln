@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourplacesApp.Android", "FourplacesApp.Android\FourplacesApp.Android.csproj", "{0635C498-0326-45B3-BFE3-9AFD4D0D1222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourplacesApp.iOS", "FourplacesApp.iOS\FourplacesApp.iOS.csproj", "{46A08D8E-E6FF-4C15-9257-7D390F124632}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourplacesApp", "FourplacesApp\FourplacesApp.csproj", "{38FD262D-B611-4AE0-A367-6486DB26ED4D}"
 EndProject
 Global
@@ -35,21 +33,6 @@ Global
 		{0635C498-0326-45B3-BFE3-9AFD4D0D1222}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{0635C498-0326-45B3-BFE3-9AFD4D0D1222}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
 		{0635C498-0326-45B3-BFE3-9AFD4D0D1222}.AppStore|iPhone.Build.0 = Debug|Any CPU
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Debug|iPhone.Build.0 = Debug|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|iPhone.ActiveCfg = Release|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Release|iPhone.Build.0 = Release|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{46A08D8E-E6FF-4C15-9257-7D390F124632}.AppStore|iPhone.Build.0 = AppStore|iPhone
 		{38FD262D-B611-4AE0-A367-6486DB26ED4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38FD262D-B611-4AE0-A367-6486DB26ED4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38FD262D-B611-4AE0-A367-6486DB26ED4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
