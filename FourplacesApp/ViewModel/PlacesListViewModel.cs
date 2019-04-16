@@ -27,7 +27,7 @@ namespace FourplacesApp
             MapAll = new Map
             {
                 MapType = MapType.Street,
-               //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
+                //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
 
             };
 
@@ -68,6 +68,6 @@ namespace FourplacesApp
         }
 
 
-}
+    }
 }
 

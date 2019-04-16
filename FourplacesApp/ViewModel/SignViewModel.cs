@@ -11,8 +11,8 @@ namespace FourplacesApp.ViewModel
     {
         private INavigation Navigation;
 
-  
-        private bool _badLogin=false;
+
+        private bool _badLogin = false;
 
         private string _email;
         private string _password1;
@@ -44,7 +44,7 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _lastName, value);
         }
 
-      
+
         public string Password1
         {
             get => _password1;
@@ -61,10 +61,10 @@ namespace FourplacesApp.ViewModel
             set => SetProperty(ref _badCredentials, value);
         }
         public ICommand ToSign { get; set; }
-       
 
-         
-           public SignViewModel(INavigation navigation)
+
+
+        public SignViewModel(INavigation navigation)
         {
             Navigation = navigation;
             ToSign = new Command(async () => await RegisterAsync());
@@ -78,7 +78,7 @@ namespace FourplacesApp.ViewModel
             BadLogin = false;
             if (EMail.Equals(""))
             {
-         
+
                 BadCredentials = "Mail vide" + Environment.NewLine;
                 BadLogin = true;
                 Console.WriteLine("Sign : mail pb");
@@ -101,7 +101,7 @@ namespace FourplacesApp.ViewModel
                 BadLogin = true;
                 Console.WriteLine("Sign : pswd pb");
             }
-            if(!BadLogin)
+            if (!BadLogin)
             {
                 Console.WriteLine("Sign : no pb");
                 RegisterRequest rr = new RegisterRequest
@@ -112,8 +112,8 @@ namespace FourplacesApp.ViewModel
                     Password = Password1
                 };
 
-         
-              await App.API.Signin(rr);
+
+                await App.API.Signin(rr);
                 LoginRequest l = new LoginRequest
                 {
                     Email = rr.Email,
@@ -129,11 +129,11 @@ namespace FourplacesApp.ViewModel
                 Console.WriteLine("Sign : pb maj ");
             }
         }
-          
 
 
 
 
-        }
+
+    }
 }
 

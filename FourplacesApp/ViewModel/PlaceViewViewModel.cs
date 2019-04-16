@@ -25,14 +25,14 @@ namespace FourplacesApp.ViewModel
         {
 
             get => !(string.IsNullOrEmpty(App.API.LoginUser.Email));
-           
+
         }
         public ICommand AddCommentary { get; set; }
         public List<CommentItem> ListeComms { get; set; }
         public Map Map { get; set; }
         public string CommentInput
         {
-            get;
+            get; set;
         }
         public string CommentaryOrPBHint
         {
@@ -41,7 +41,7 @@ namespace FourplacesApp.ViewModel
 
         public PlaceViewViewModel(int id_selected_place)
         {
-            AddCommentary=  new Command(async () => await AddComAsync());
+            AddCommentary = new Command(async () => await AddComAsync());
             _datID = id_selected_place;
             Map = new Map
             {
@@ -64,16 +64,19 @@ namespace FourplacesApp.ViewModel
 
         }
 
-         async Task AddComAsync()
+        async Task AddComAsync()
         {
 
-
-            CreateCommentRequest createComment = new CreateCommentRequest
+            if (!(string.IsNullOrWhiteSpace(CommentInput) || string.IsNullOrEmpty(CommentInput)))
             {
-                Text = CommentInput
-            };
-           await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
-            await base.OnResume();
+                CreateCommentRequest createComment = new CreateCommentRequest
+                {
+                    Text = CommentInput
+                };
+                await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
+                await base.OnResume();
+            }
+
         }
 
         public async override Task OnResume()
@@ -82,8 +85,8 @@ namespace FourplacesApp.ViewModel
             PlaceSelected = await App.API.GetPlace(_datID);
 
             var position = new Position(PlaceSelected.Latitude, PlaceSelected.Longitude); // Latitude, Longitude
-           
-             var pin = new Pin
+
+            var pin = new Pin
             {
                 Type = PinType.Place,
                 Position = position,
@@ -93,9 +96,14 @@ namespace FourplacesApp.ViewModel
             Map.Pins.Add(pin);
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(App.RadiusMap)));
 
-
+            Console.WriteLine("Liste comms");
             ListeComms = PlaceSelected.Comments;
             ListeComms.Sort((x, y) => y.Date.CompareTo(x.Date));
+            Console.WriteLine("Liste comms Done [" + ListeComms.Count + "]");
+            foreach (CommentItem c in ListeComms)
+            {
+                Console.WriteLine("[" + c.Author.FirstName + "] " + c.Text + " (" + c.Date + ")");
+            }
         }
     }
 }

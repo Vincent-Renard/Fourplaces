@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace FourplacesApp.ViewModel
 {
-    public class UpdatePasswordViewModel :ViewModelBase
+    public class UpdatePasswordViewModel : ViewModelBase
     {
         private INavigation Navigation;
 
@@ -24,7 +24,7 @@ namespace FourplacesApp.ViewModel
             get => _badLogin;
             set => SetProperty(ref _badLogin, value);
         }
-       
+
 
         public string Password1
         {
@@ -45,22 +45,22 @@ namespace FourplacesApp.ViewModel
 
 
 
-      
+
         public UpdatePasswordViewModel(INavigation navigation)
         {
             Navigation = navigation;
             Vald = new Command(async () => await UpdatePassw());
-         
+
         }
 
-    
-    async Task UpdatePassw()
+
+        async Task UpdatePassw()
         {
 
             BadCredentials = "";
             BadMdp = false;
-       
-              
+
+
 
             if (!(Password1.Equals(Password2)))
             {
@@ -89,6 +89,6 @@ namespace FourplacesApp.ViewModel
 
 
     }
-   
+
 }
 

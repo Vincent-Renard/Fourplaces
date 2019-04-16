@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                      xmlns:local="clr-namespace:FourplacesApp" 
-                   xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.PlaceView" >
+<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.PlaceView">
     <StackLayout>
         <!--     -->
     </StackLayout>
     <ScrollView>
         <StackLayout>
             <Label Text="{Binding PlaceSelected.Title}" HorizontalOptions="CenterAndExpand" FontSize="18" TextColor="Black" />
-
             <Image Source="{Binding PlaceSelected.ImageSourceURL}" />
-            <!-- voir pour avoir la meme taile d'image sur tout les placesviews -->
+            <!-- voir pour avoir la meme taile d'image sur tout les placesviews 
             <Label Text="{Binding PlaceSelected.Description}" TextColor="Black" LineBreakMode="WordWrap" FontSize="18" MaxLines="2" />
-           
-             <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0"/>
- 
-            <Entry Text="{Binding CommentInput}" Placeholder="CommentaryOrPBHint" />
-                     <Button Text="Àjouter" Command="{Binding AddCommentary}" IsEnabled="{Binding Co}" />
-
-            <ListView x:Name="CommentsList" IsPullToRefreshEnabled="true" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}" >
-            
+        
+            <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0" /> 
+            <Entry Text="{Binding CommentInput}" Placeholder="{Binding CommentaryOrPBHint}" />
+            <Button Text="Ajouter" Command="{Binding AddCommentary}" IsEnabled="{Binding Co}" />
+   -->
+            <ListView x:Name="CommentsList" IsPullToRefreshEnabled="true" HasUnevenRows="True" SelectionMode="Single" ItemsSource="{Binding ListeComms}">
                 <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical" >
-                                <Label Text="{Binding Author.FirstName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="WordWrap" FontSize="16" />
-                                <Label Text="{Binding Text}" TextColor="Black" LineBreakMode="WordWrap" FontSize="20" />
-                                <Label Text="{Binding Date}" TextColor="Gray" LineBreakMode="WordWrap" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" />
-                                
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Author.FirstName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="WordWrap" FontSize="16" />
+                                        <Label Text="{Binding Text}" TextColor="Black" LineBreakMode="WordWrap" FontSize="20" />
+                                        <Label Text="{Binding Date}" TextColor="Gray" LineBreakMode="WordWrap" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" />
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ScrollView>
 </mvvm:BaseContentPage>

@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                      xmlns:local="clr-namespace:FourplacesApp" 
-                      xmlns:models="clr-namespace:FourplacesApp.Model" 
-                      xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" 
-                      xmlns:vm="clr-namespace:FourplacesApp.ViewModel" 
-                      x:Class="FourplacesApp.Sign" 
-                      x:DataType="vm:SignViewModel">
+<mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:models="clr-namespace:FourplacesApp.Model" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.Sign" x:DataType="vm:SignViewModel">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

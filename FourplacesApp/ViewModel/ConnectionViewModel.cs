@@ -62,14 +62,14 @@ namespace FourplacesApp.ViewModel
         }
 
         async Task ConnexionAsync()
-        { 
+        {
             Console.WriteLine("Connexion...");
-            if(string.IsNullOrEmpty(_email)&& string.IsNullOrEmpty(_password))
+            if (string.IsNullOrEmpty(_email) && string.IsNullOrEmpty(_password))
             {
                 _email = "mail@mail.com";
                 _password = "mdp";
-            }           
-           
+            }
+
 
 
             LoginRequest l = new LoginRequest
@@ -83,12 +83,12 @@ namespace FourplacesApp.ViewModel
                 BadLogin = true;
             }
             else
-            { 
+            {
                 BadLogin = false;
                 await Navigation.PushAsync(new Menu());
             }
         }
-      
+
 
 
     }

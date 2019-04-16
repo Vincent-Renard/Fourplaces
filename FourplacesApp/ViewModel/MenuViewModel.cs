@@ -44,10 +44,10 @@ namespace FourplacesApp.ViewModel
 
         public MenuViewModel(INavigation navigation)
         {
-            needLogin="Connection requise";
+            needLogin = "Connection requise";
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
-            Deconnexion = new Command( () =>  GoDeconnexion());
+            Deconnexion = new Command(() => GoDeconnexion());
             GoHome = new Command(async () => await GoHomeAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
         }
@@ -67,10 +67,10 @@ namespace FourplacesApp.ViewModel
 
         async Task GoHomeAsync()
         {
-          
-                await Navigation.PushAsync(new PlacesListView());
-            
-           
+
+            await Navigation.PushAsync(new PlacesListView());
+
+
 
         }
 
@@ -83,7 +83,7 @@ namespace FourplacesApp.ViewModel
             }
         }
 
-         void GoDeconnexion()
+        void GoDeconnexion()
         {
             App.API.LoginUser.Email = null;
             App.API.LoginUser.Password = null;
