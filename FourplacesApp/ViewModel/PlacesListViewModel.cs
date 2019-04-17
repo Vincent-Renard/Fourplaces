@@ -44,6 +44,7 @@ namespace FourplacesApp
             Console.WriteLine("l " + user_position.Latitude + " L " + user_position.Longitude);
             foreach (PlaceItemSummary p in Liste)
             {
+                Console.WriteLine(p.Title);
                 var position = new Position(p.Latitude, p.Longitude); // Latitude, Longitude
                 var pin = new Pin
                 {
