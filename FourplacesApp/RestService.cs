@@ -49,13 +49,18 @@ namespace FourplacesApp
             }
         }
 
+     
         public async Task<int> PostImgAsync(MediaFile pic)
         {
             Console.WriteLine("RS PostImgAsync");
             client = new HttpClient();
             //byte[] imageData = await client.GetByteArrayAsync("https://bnetcmsus-a.akamaihd.net/cms/blog_header/x6/X6KQ96B3LHMY1551140875276.jpg");
 
-            byte[] imageData = File.ReadAllBytes(pic.Path);
+            //byte[] imageData = File.ReadAllBytes(pic.Path);
+            var memoryStream = new MemoryStream();
+            pic.GetStream().CopyTo(memoryStream);
+            byte[] imageData = memoryStream.ToArray();
+          
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://td-api.julienmialon.com/images");
             request.Headers.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
@@ -294,7 +299,7 @@ namespace FourplacesApp
             Console.WriteLine("L " + placeRequest.Longitude);
             Console.WriteLine("l " + placeRequest.Latitude);
             Console.WriteLine("imgid "+placeRequest.ImageId);
-            await this.RefreshToken();
+            await RefreshToken();
 
             Response retour = null;
             string tmp = string.Format(serviceURI + _placesURI, string.Empty);
@@ -306,6 +311,7 @@ namespace FourplacesApp
 
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
+
             HttpResponseMessage response = await client.PostAsync(uri, content);
 
             if (response.IsSuccessStatusCode)
@@ -356,12 +362,6 @@ namespace FourplacesApp
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PostAsync(uri, content);
-            /*
-              if (response.IsSuccessStatusCode)
-             {
-
-             }
-             */
             var r = await response.Content.ReadAsStringAsync();
             var resp = JsonConvert.DeserializeObject<Response>(r);
 
