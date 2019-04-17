@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FourplacesApp.ViewModel;
+using Plugin.Media.Abstractions;
 using Storm.Mvvm.Forms;
 using Xamarin.Forms;
 
@@ -13,5 +14,7 @@ namespace FourplacesApp
             InitializeComponent();
             BindingContext = new NewPlaceViewViewModel(Navigation);
         }
+
+
     }
 }

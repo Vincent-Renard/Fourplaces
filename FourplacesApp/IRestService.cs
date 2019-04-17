@@ -4,14 +4,16 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Model;
 using Model.Dtos;
+using Plugin.Media.Abstractions;
+
 namespace FourplacesApp
 {
     public interface IRestService
     {
         /*
-         * 11/13
+         * 12/13
          * Le refresh est interne (on l'appelle jamais explicitement)
-         * Le getImg est plus ou moins interne       
+            
          *        
          */
 
@@ -32,11 +34,11 @@ namespace FourplacesApp
         /*
          *PLACE
          */
-        //string GetImage(int idImg);
+        string GetImage(int? idImg);
         Task<List<PlaceItemSummary>> GetListPlacesAsync();
-        // Task<Response> PostImg(CreatePlaceRequest placeRequest); //TOKEN
         Task<Response> PostPlaceAsync(CreatePlaceRequest placeRequest);
         Task<PlaceItem> GetPlace(int idPlace);
-        Task<Response> PostCommentAsync(int idPlace,CreateCommentRequest commentRequest);
+        Task<Response> PostCommentAsync(int idPlace, CreateCommentRequest commentRequest);
+        Task<int> PostImgAsync(MediaFile pic);
     }
 }
