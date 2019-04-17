@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Model;
 using Model.Dtos;
 using Plugin.Geolocator;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -24,7 +26,6 @@ namespace FourplacesApp
             API = new RestService();
             InitializeComponent();
             MainPage = new NavigationPage(new Menu());
-            //MainPage = new NavigationPage(new Connection());
             defaultPosition = new Position(47.845647, 1.939958);
 
         }
@@ -69,10 +70,20 @@ namespace FourplacesApp
             catch (Exception)
             {
 
-                Console.WriteLine("LOCALISATION Error localistaion position par default donc ");
+                Console.WriteLine("LOCALISATION Error localistaion position par defaut donc ");
                 return defaultPosition;
             }
         }
+        public static async Task<MediaFile> PickAPic()
+        {
+            await CrossMedia.Current.Initialize();
+            if (CrossMedia.Current.IsPickPhotoSupported)
+            { 
 
+                return await CrossMedia.Current.PickPhotoAsync();
+            }
+            Console.WriteLine("On a pas pic the pic ");
+            return null;
+        }
     }
 }
