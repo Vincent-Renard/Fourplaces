@@ -5,6 +5,7 @@
         <Button Text="Connexion" Command="{Binding Connexion}" IsEnabled="{Binding NoCo}" />
         <Button Text="Mon profil" Command="{Binding MyProfile}" IsEnabled="{Binding Co}" />
         <Button Text="Accueil" Command="{Binding PlacesList}" />
+        <Button Text="Ajouter un lieu" Command="{Binding AddPlace}" IsEnabled="{Binding Co}" />
         <Button Text="Deconnexion" Command="{Binding Deconnexion}" IsEnabled="{Binding Co}" />
 
     </StackLayout>

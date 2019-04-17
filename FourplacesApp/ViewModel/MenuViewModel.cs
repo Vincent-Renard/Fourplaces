@@ -40,26 +40,30 @@ namespace FourplacesApp.ViewModel
 
         public MenuViewModel(INavigation navigation)
         {
-            needLogin = "Connection requise";
+
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
             Deconnexion = new Command(() => GoDeconnexion());
             PlacesList = new Command(async () => await GoShowPlacesListAsync());
+            AddPlace = new Command(async () => await AddPlaceAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
 
         }
         public override async Task OnResume()
         {
             Console.WriteLine("OnResume");
-            if (!NoCo)
-            {
+            if (Co)
                 needLogin = "";
+            else
+                needLogin = "Connection requise";
 
-            }
-             await base.OnResume();
+            await base.OnResume();
 
         }
-
+        async Task AddPlaceAsync()
+        {
+            await Navigation.PushAsync(new NewPlaceView());
+        }
         async Task ConnexionAsync()
         {
             await Navigation.PushAsync(new Connection());
