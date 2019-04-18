@@ -43,6 +43,7 @@ namespace FourplacesApp.ViewModel
             {
                 MapType = MapType.Street
             };
+            Map.Pins.Clear();
             Send = new Command(async () => await AddAPlaceAsync());
             SendImg = new Command(async () => await InsertImageAsync());
              
@@ -63,9 +64,6 @@ namespace FourplacesApp.ViewModel
                 {
                     placeRequest.ImageId = await App.API.PostImgAsync(picture);
                 }
-
-
-                Console.WriteLine("place :::::"+placeRequest.Longitude);
                 await App.API.PostPlaceAsync(placeRequest);
             }
             await base.OnResume();
@@ -76,14 +74,11 @@ namespace FourplacesApp.ViewModel
         {
             await base.OnResume();
             posOfTheplace = await App.LocalisationAsync();
-            Console.WriteLine("up= "+ posOfTheplace.Longitude+" ,"+ posOfTheplace.Latitude);
-            Map.MoveToRegion(MapSpan.FromCenterAndRadius(posOfTheplace, Distance.FromKilometers(App.RadiusMap)));
-            Map.Pins.Clear();
+
             Pin p = new Pin() { Position = posOfTheplace, Type = PinType.Place };
             Map.Pins.Add(p);
-    
-            Console.WriteLine("posOfTheplace"+posOfTheplace.Latitude);
-            Console.WriteLine("posOfTheplace" + posOfTheplace.Longitude);
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(posOfTheplace, Distance.FromKilometers(App.RadiusMap)));
+        
         }
         async Task InsertImageAsync()
         {
