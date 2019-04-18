@@ -40,7 +40,7 @@ namespace FourplacesApp
         public async Task GetRoot()
         {
             Console.WriteLine("RS GetRoot");
-            var uri = new Uri(string.Format(this.serviceURI + _rootURI, string.Empty));
+            var uri = new Uri(string.Format(serviceURI + _rootURI, string.Empty));
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
@@ -52,16 +52,15 @@ namespace FourplacesApp
      
         public async Task<int> PostImgAsync(MediaFile pic)
         {
+            await RefreshToken();
             Console.WriteLine("RS PostImgAsync");
             client = new HttpClient();
             //byte[] imageData = await client.GetByteArrayAsync("https://bnetcmsus-a.akamaihd.net/cms/blog_header/x6/X6KQ96B3LHMY1551140875276.jpg");
-
-            //byte[] imageData = File.ReadAllBytes(pic.Path);
             var memoryStream = new MemoryStream();
             pic.GetStream().CopyTo(memoryStream);
             byte[] imageData = memoryStream.ToArray();
-          
 
+            Console.WriteLine("StreamArray: "+imageData==null);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://td-api.julienmialon.com/images");
             request.Headers.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
 
@@ -76,9 +75,8 @@ namespace FourplacesApp
             request.Content = requestContent;
 
             HttpResponseMessage response = await client.SendAsync(request);
-
-            string result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode) {
+                string result = await response.Content.ReadAsStringAsync();
                 ImageItem toRet = JsonConvert.DeserializeObject<Response<ImageItem>>(result).Data;
                 Console.WriteLine("Image uploaded! ");
                 return toRet.Id;
@@ -96,7 +94,7 @@ namespace FourplacesApp
             client = new HttpClient();
             List<PlaceItemSummary> toRet = new List<PlaceItemSummary>();
 
-            var uri = new Uri(string.Format(this.serviceURI + _placesURI, string.Empty));
+            var uri = new Uri(string.Format(serviceURI + _placesURI, string.Empty));
 
             try
             {
@@ -106,7 +104,7 @@ namespace FourplacesApp
                 {
                     string content = await response.Content.ReadAsStringAsync();
                     toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;
-                }
+                }else Console.WriteLine(response.ReasonPhrase);
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
@@ -139,7 +137,11 @@ namespace FourplacesApp
                 Response<LoginResult> toks = JsonConvert.DeserializeObject<Response<LoginResult>>(rep);
                 Tokens = toks.Data;
             }
-            else Console.WriteLine("EROORRR Sign   ");
+            else
+            {
+                Console.WriteLine("EROORRR Sign   "+response.ReasonPhrase);
+                
+            }
 
 
 
@@ -193,7 +195,7 @@ namespace FourplacesApp
             Console.WriteLine("RS GetMe");
             await this.RefreshToken();
             UserItem toRet = null;
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
+            var uri = new Uri(string.Format(serviceURI + _meURI, string.Empty));
             try
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
@@ -224,7 +226,7 @@ namespace FourplacesApp
             await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI, string.Empty));
+            var uri = new Uri(string.Format(serviceURI + _meURI, string.Empty));
             var json = JsonConvert.SerializeObject(patch_user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -263,7 +265,7 @@ namespace FourplacesApp
             await this.RefreshToken();
             client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
-            var uri = new Uri(string.Format(this.serviceURI + this._meURI + this._patchPasswordURI, string.Empty));
+            var uri = new Uri(string.Format(serviceURI + _meURI + _patchPasswordURI, string.Empty));
             var json = JsonConvert.SerializeObject(nouveaupwd);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
