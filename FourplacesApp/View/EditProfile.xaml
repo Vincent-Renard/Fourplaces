@@ -8,11 +8,8 @@
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0">
             <Label Text="Modifier mon profil" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
-            <Image Source="{Binding Image}" HeightRequest="250">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ChangePicDemmand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+            <Image Source="{Binding ImageSrc}" HeightRequest="250" />
+            <Button Grid.Row="2" Text="Inserer une image" Command="{Binding SendProfilePic}" />
             <Entry Text="{Binding InputFirstName}" Placeholder="{Binding LastFirstName}" />
             <Entry Text="{Binding InputLastName}" Placeholder="{Binding LastLastName}" />
             <Button Grid.Row="2" Text="Modifier mot de passe" Command="{Binding UpdatePassword}" />

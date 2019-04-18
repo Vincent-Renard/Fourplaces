@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using FourplacesApp;
 using Model.Dtos;
+using Plugin.Media.Abstractions;
 using Storm.Mvvm;
 using Xamarin.Forms;
 
@@ -11,13 +12,14 @@ namespace FourplacesApp.ViewModel
     public class EditProfileViewModel : ViewModelBase
     {
         private INavigation Navigation;
+        private MediaFile profilePicture;
         private string _firstName;
         private string _lastName;
         private string _LastFirstName;
         private string _LastLastName;
         private string _imgProfil;
 
-        public string Image
+        public string ImageSrc
         {
             get => _imgProfil;
             set => SetProperty(ref _imgProfil, value);
@@ -51,27 +53,26 @@ namespace FourplacesApp.ViewModel
         public ICommand Valider { get; set; }
         public ICommand UpdatePassword { get; set; }
 
-        public ICommand ChangePicDemmand { get; set; }
-
+     
+       
+        public ICommand SendProfilePic { get; set; }
         public EditProfileViewModel(INavigation navigation)
         {
             Navigation = navigation;
             Valider = new Command(async () => await UpdateUser());
             UpdatePassword = new Command(async () => await GoUpdatePassord());
-            ChangePicDemmand = new Command(async () => await GoUpdatePic());
+            SendProfilePic = new Command(async () => await InsertImageAsync());
+
             RemplirLasts();
 
         }
 
-        private Task GoUpdatePic()
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public async override Task OnResume()
         {
-            RemplirLasts();
             await base.OnResume();
+            RemplirLasts();
+           
         }
         async Task GoUpdatePassord()
         {
@@ -80,26 +81,56 @@ namespace FourplacesApp.ViewModel
 
         async Task UpdateUser()
         {
-            UpdateProfileRequest nouveau = new UpdateProfileRequest
+            UpdateProfileRequest nouveau = new UpdateProfileRequest();
+
+            if (!(string.IsNullOrWhiteSpace(InputFirstName)||string.IsNullOrEmpty(InputFirstName)))
             {
-                FirstName = InputFirstName,
-                LastName = InputLastName
-            };
+                nouveau.FirstName = InputFirstName;
+            }
+
+            if (!(string.IsNullOrWhiteSpace(InputLastName) || string.IsNullOrEmpty(InputLastName)))
+            {
+                nouveau.LastName = InputLastName;
+            }
+
+           
+            if (!string.IsNullOrEmpty(ImageSrc))
+            {
+                nouveau.ImageId = await App.API.PostImgAsync(profilePicture);
+            }
+            Console.WriteLine("up me ");
             await App.API.PatchMe(nouveau);
+            Console.WriteLine("Retour ");
             RemplirLasts();
+            await OnResume();
 
         }
+        async Task InsertImageAsync()
+        {
+            MediaFile pic = await App.PickAPic();
+            if (pic == null)
 
+                ImageSrc = null;
+            else
+            {
+                profilePicture = pic;
+                ImageSrc = pic.Path;
+            }
+
+        }
         private void RemplirLasts()
         {
 
             UserItem lastMe = App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;
-            Image = lastMe.Image;
-            Console.WriteLine(LastLastName);
-            Console.WriteLine(LastFirstName);
+            ImageSrc = App.API.GetImage(lastMe.ImageId);
 
+            Console.WriteLine(lastMe.FirstName);
+            Console.WriteLine(lastMe.LastName);
+            Console.WriteLine(lastMe.ImageId);
+            Console.WriteLine(ImageSrc);
+            Console.WriteLine(App.API.GetImage(lastMe.ImageId));
         }
 
     }
