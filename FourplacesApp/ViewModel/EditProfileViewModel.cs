@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using FourplacesApp;
 using Model.Dtos;
 using Plugin.Media.Abstractions;
 using Storm.Mvvm;
@@ -53,8 +51,8 @@ namespace FourplacesApp.ViewModel
         public ICommand Valider { get; set; }
         public ICommand UpdatePassword { get; set; }
 
-     
-       
+
+
         public ICommand SendProfilePic { get; set; }
         public EditProfileViewModel(INavigation navigation)
         {
@@ -67,12 +65,12 @@ namespace FourplacesApp.ViewModel
 
         }
 
-     
+
         public async override Task OnResume()
         {
             await base.OnResume();
             RemplirLasts();
-           
+
         }
         async Task GoUpdatePassord()
         {
@@ -82,28 +80,21 @@ namespace FourplacesApp.ViewModel
         async Task UpdateUser()
         {
             UpdateProfileRequest nouveau = new UpdateProfileRequest();
-
-            if (!(string.IsNullOrWhiteSpace(InputFirstName)||string.IsNullOrEmpty(InputFirstName)))
+            if (!(string.IsNullOrWhiteSpace(InputFirstName) || string.IsNullOrEmpty(InputFirstName)))
             {
                 nouveau.FirstName = InputFirstName;
             }
-
             if (!(string.IsNullOrWhiteSpace(InputLastName) || string.IsNullOrEmpty(InputLastName)))
             {
                 nouveau.LastName = InputLastName;
             }
-
-           
             if (!string.IsNullOrEmpty(ImageSrc))
             {
                 nouveau.ImageId = await App.API.PostImgAsync(profilePicture);
             }
-            Console.WriteLine("up me ");
             await App.API.PatchMe(nouveau);
-            Console.WriteLine("Retour ");
             RemplirLasts();
             await OnResume();
-
         }
         async Task InsertImageAsync()
         {
@@ -116,23 +107,14 @@ namespace FourplacesApp.ViewModel
                 profilePicture = pic;
                 ImageSrc = pic.Path;
             }
-
         }
         private void RemplirLasts()
         {
-
             UserItem lastMe = App.API.UserItem;
             LastLastName = lastMe.LastName;
             LastFirstName = lastMe.FirstName;
             ImageSrc = App.API.GetImage(lastMe.ImageId);
-
-            Console.WriteLine(lastMe.FirstName);
-            Console.WriteLine(lastMe.LastName);
-            Console.WriteLine(lastMe.ImageId);
-            Console.WriteLine(ImageSrc);
-            Console.WriteLine(App.API.GetImage(lastMe.ImageId));
         }
-
     }
 }
 

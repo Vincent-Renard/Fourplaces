@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using Storm.Mvvm;
 using Xamarin.Forms;
 using Model;
-using Model.Dtos;
 using System;
 using Xamarin.Forms.Maps;
-using Plugin.Geolocator;
 
 namespace FourplacesApp
 {
@@ -27,9 +25,7 @@ namespace FourplacesApp
             Navigation = navigation;
             MapAll = new Map
             {
-                MapType = MapType.Street,
-                //IsShowingUser = true //pour centrer la map sur la position de l'utilisateur 
-
+                MapType = MapType.Street
             };
 
             base.OnResume();
@@ -41,7 +37,6 @@ namespace FourplacesApp
             await base.OnResume();
             Liste = await App.API.GetListPlacesAsync();
             Position user_position = await App.LocalisationAsync();
-            Console.WriteLine("l " + user_position.Latitude + " L " + user_position.Longitude);
             foreach (PlaceItemSummary p in Liste)
             {
                 Console.WriteLine(p.Title);
@@ -51,18 +46,11 @@ namespace FourplacesApp
                     Type = PinType.Place,
                     Position = position,
                     Label = p.Title
-
                 };
                 MapAll.Pins.Add(pin);
                 MapAll.MoveToRegion(MapSpan.FromCenterAndRadius(user_position, Distance.FromKilometers(App.RadiusMap)));
             }
-
-
-
-
         }
-
-
     }
 }
 

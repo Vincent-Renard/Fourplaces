@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Storm.Mvvm;
-using FourplacesApp.ViewModel;
-using Xamarin.Forms;
+﻿using FourplacesApp.ViewModel;
 using Storm.Mvvm.Forms;
 
 namespace FourplacesApp

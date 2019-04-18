@@ -44,8 +44,14 @@ namespace FourplacesApp.ViewModel
                 MapType = MapType.Street
             };
             Map.Pins.Clear();
-            Send = new Command(async () => await AddAPlaceAsync());
-            SendImg = new Command(async () => await InsertImageAsync());
+            Send = new Command(async () =>
+            {
+                await AddAPlaceAsync();
+            });
+            SendImg = new Command(async () =>
+            {
+                await InsertImageAsync();
+            });
              
         }
 
@@ -75,7 +81,7 @@ namespace FourplacesApp.ViewModel
             await base.OnResume();
             posOfTheplace = await App.LocalisationAsync();
 
-            Pin p = new Pin() { Position = posOfTheplace, Type = PinType.Place };
+            Pin p = new Pin { Position = posOfTheplace, Type = PinType.Place };
             Map.Pins.Add(p);
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(posOfTheplace, Distance.FromKilometers(App.RadiusMap)));
         

@@ -7,7 +7,7 @@ using System;
 
 namespace FourplacesApp.ViewModel
 {
-    public partial class ConnectionViewModel : ViewModelBase
+    public class ConnectionViewModel : ViewModelBase
     {
         private INavigation Navigation;
         private string _email;
@@ -48,8 +48,14 @@ namespace FourplacesApp.ViewModel
         {
 
             Navigation = navigation;
-            Connexion = new Command(async () => await ConnexionAsync());
-            GoToRegister = new Command(async () => await GoRegisterAsync());
+            Connexion = new Command(async () =>
+            {
+                await ConnexionAsync();
+            });
+            GoToRegister = new Command(async () =>
+            {
+                await GoRegisterAsync();
+            });
         }
 
 

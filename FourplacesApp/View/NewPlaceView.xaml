@@ -3,17 +3,11 @@
     <StackLayout>
         <Label Text="Ajouter un lieu" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
         <Entry Text="{Binding TitrePlace}" Placeholder="Titre" />
-       
         <Editor Text="{Binding DescriptionPlace}" Placeholder="Description" />
-         <Label Text="Inserer une image" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
-       <Button Text="Ajouter Image" Command="{Binding SendImg}" />
-        <Image Source="{Binding ImageSrc}"
-                    HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand"
-                />
-
+        <Label Text="Inserer une image" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
+        <Button Text="Ajouter Image" Command="{Binding SendImg}" />
+        <Image Source="{Binding ImageSrc}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
         <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0" />
-         <Button Text="Ajouter Lieu" Command="{Binding Send}" />
-
+        <Button Text="Ajouter Lieu" Command="{Binding Send}" />
     </StackLayout>
 </mvvm:BaseContentPage>

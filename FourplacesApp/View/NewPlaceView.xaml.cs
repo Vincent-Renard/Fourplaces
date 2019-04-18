@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using FourplacesApp.ViewModel;
-using Plugin.Media.Abstractions;
+﻿using FourplacesApp.ViewModel;
 using Storm.Mvvm.Forms;
-using Xamarin.Forms;
 
 namespace FourplacesApp
 {

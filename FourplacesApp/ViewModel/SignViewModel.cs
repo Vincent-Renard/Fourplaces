@@ -12,7 +12,7 @@ namespace FourplacesApp.ViewModel
         private INavigation Navigation;
 
 
-        private bool _badLogin = false;
+        private bool _badLogin;
 
         private string _email;
         private string _password1;
@@ -67,7 +67,10 @@ namespace FourplacesApp.ViewModel
         public SignViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            ToSign = new Command(async () => await RegisterAsync());
+            ToSign = new Command(async () =>
+            {
+                await RegisterAsync();
+            });
 
         }
 

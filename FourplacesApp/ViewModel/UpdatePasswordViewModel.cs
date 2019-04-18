@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Model.Dtos;
 using Storm.Mvvm;
 
 using Xamarin.Forms;
@@ -13,7 +12,7 @@ namespace FourplacesApp.ViewModel
         private INavigation Navigation;
 
 
-        private bool _badLogin = false;
+        private bool _badLogin;
         private string _password1;
         private string _password2;
         private string _badCredentials;

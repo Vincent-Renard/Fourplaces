@@ -49,7 +49,7 @@ namespace FourplacesApp
             }
         }
 
-     
+
         public async Task<int> PostImgAsync(MediaFile pic)
         {
             await RefreshToken();
@@ -60,7 +60,7 @@ namespace FourplacesApp
             pic.GetStream().CopyTo(memoryStream);
             byte[] imageData = memoryStream.ToArray();
 
-            Console.WriteLine("StreamArray: "+imageData==null);
+            Console.WriteLine("StreamArray: " + imageData == null);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://td-api.julienmialon.com/images");
             request.Headers.Authorization = new AuthenticationHeaderValue(Tokens.TokenType, Tokens.AccessToken);
 
@@ -75,18 +75,16 @@ namespace FourplacesApp
             request.Content = requestContent;
 
             HttpResponseMessage response = await client.SendAsync(request);
-            if (response.IsSuccessStatusCode) {
+            if (response.IsSuccessStatusCode)
+            {
                 string result = await response.Content.ReadAsStringAsync();
                 ImageItem toRet = JsonConvert.DeserializeObject<Response<ImageItem>>(result).Data;
                 Console.WriteLine("Image uploaded! ");
                 return toRet.Id;
             }
-            else
-            {
-                Console.WriteLine(response.ReasonPhrase);
-                Console.WriteLine("Image NOT uploaded! ");
-                return 0;
-            }
+            Console.WriteLine(response.ReasonPhrase);
+            Console.WriteLine("Image NOT uploaded! ");
+            return 0;
         }
         public async Task<List<PlaceItemSummary>> GetListPlacesAsync()
         {
@@ -104,7 +102,8 @@ namespace FourplacesApp
                 {
                     string content = await response.Content.ReadAsStringAsync();
                     toRet = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary>>>(content).Data;
-                }else Console.WriteLine(response.ReasonPhrase);
+                }
+                else Console.WriteLine(response.ReasonPhrase);
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
 
@@ -139,8 +138,8 @@ namespace FourplacesApp
             }
             else
             {
-                Console.WriteLine("EROORRR Sign   "+response.ReasonPhrase);
-                
+                Console.WriteLine("EROORRR Sign   " + response.ReasonPhrase);
+
             }
 
 
@@ -208,7 +207,7 @@ namespace FourplacesApp
                     {
                         toRet.Image = GetImage(toRet.ImageId);
                     }
-                   
+
                 }
             }
             catch (Exception ex) { Console.WriteLine("EROORRR " + ex.Message); }
@@ -300,12 +299,12 @@ namespace FourplacesApp
             Console.WriteLine("D " + placeRequest.Description);
             Console.WriteLine("L " + placeRequest.Longitude);
             Console.WriteLine("l " + placeRequest.Latitude);
-            Console.WriteLine("imgid "+placeRequest.ImageId);
+            Console.WriteLine("imgid " + placeRequest.ImageId);
             await RefreshToken();
 
             Response retour = null;
             string tmp = string.Format(serviceURI + _placesURI, string.Empty);
-            Console.WriteLine("url: "+tmp);
+            Console.WriteLine("url: " + tmp);
             var uri = new Uri(tmp);
 
             var json = JsonConvert.SerializeObject(placeRequest);
@@ -337,7 +336,7 @@ namespace FourplacesApp
 
         public async Task<PlaceItem> GetPlace(int idPlace)
         {
-            Console.WriteLine("RS GetPlace "+idPlace);
+            Console.WriteLine("RS GetPlace " + idPlace);
             client = new HttpClient();
             var uri = new Uri(string.Format(serviceURI + _placesURI + "/" + idPlace, string.Empty));
             HttpResponseMessage response = await client.GetAsync(uri);
