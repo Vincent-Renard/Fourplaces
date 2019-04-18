@@ -39,6 +39,7 @@ namespace FourplacesApp.ViewModel
 
         public PlaceViewViewModel(int id_selected_place,INavigation nav)
         {
+
             Navigation = nav;
             AddCommentary = new Command(async () => await AddComAsync());
             _datID = id_selected_place;
@@ -69,8 +70,9 @@ namespace FourplacesApp.ViewModel
                         Text = CommentInput
                     };
                     await App.API.PostCommentAsync(PlaceSelected.Id, createComment);
+                   
+                    await OnResume();
                     CommentInput = "";
-                    await base.OnResume();
                 }
             }
             else
@@ -109,6 +111,7 @@ namespace FourplacesApp.ViewModel
 
             ListeComms = temp;
             Console.WriteLine("Affichage");
+           
 
         }
     }
