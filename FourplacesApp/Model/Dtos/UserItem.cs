@@ -19,7 +19,7 @@ namespace Model.Dtos
         [JsonProperty("image_id")]
         public int? ImageId { get; set; }
 
-        public string Image { get; set; }
+        public string ImageSourceURL { get; set; }
 
     }
 }

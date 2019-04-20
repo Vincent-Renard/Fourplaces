@@ -62,7 +62,10 @@ namespace FourplacesApp.ViewModel
         }
         async Task AddPlaceAsync()
         {
-            await Navigation.PushAsync(new NewPlaceView());
+            if (Co)
+            {
+                await Navigation.PushAsync(new NewPlaceView());
+            }
         }
         async Task ConnexionAsync()
         {

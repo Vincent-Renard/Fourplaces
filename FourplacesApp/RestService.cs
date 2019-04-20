@@ -205,7 +205,7 @@ namespace FourplacesApp
                     toRet = JsonConvert.DeserializeObject<Response<UserItem>>(content).Data;
                     if (toRet.ImageId != null)
                     {
-                        toRet.Image = GetImage(toRet.ImageId);
+                        toRet.ImageSourceURL = GetImage(toRet.ImageId);
                     }
 
                 }
