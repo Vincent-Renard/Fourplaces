@@ -192,7 +192,7 @@ namespace FourplacesApp
         public async Task<UserItem> GetMe()
         {
             Console.WriteLine("RS GetMe");
-            await this.RefreshToken();
+            await RefreshToken();
             UserItem toRet = null;
             var uri = new Uri(string.Format(serviceURI + _meURI, string.Empty));
             try

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mvvm:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FourplacesApp" xmlns:models="clr-namespace:FourplacesApp.Model" xmlns:mvvm="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms" xmlns:vm="clr-namespace:FourplacesApp.ViewModel" x:Class="FourplacesApp.NewPlaceView" x:DataType="vm:NewPlaceViewViewModel">
-    <StackLayout>
-        <Label Text="Ajouter un lieu" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
-        <Entry Text="{Binding TitrePlace}" Placeholder="Titre" />
-        <Editor Text="{Binding DescriptionPlace}" Placeholder="Description" />
-        <Label Text="Inserer une image" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
-        <Button Text="Ajouter Image" Command="{Binding SendImg}" />
-        <Image Source="{Binding ImageSrc}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-        <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0" />
-        <Button Text="Ajouter Lieu" Command="{Binding Send}" />
-    </StackLayout>
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Ajouter un lieu" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
+            <Entry Text="{Binding TitrePlace}" Placeholder="Titre" />
+            <Editor Text="{Binding DescriptionPlace}" Placeholder="Description" />
+            <Label Text="Inserer une image" HorizontalOptions="CenterAndExpand" FontSize="24" TextColor="Red" />
+            <Button Text="Ajouter Image" Command="{Binding SendImg}" />
+            <Image Source="{Binding ImageSrc}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <ContentView Content="{Binding Map}" HeightRequest="400" Margin="10,0" />
+            <Button Text="Ajouter Lieu" Command="{Binding Send}" />
+        </StackLayout>
+    </ScrollView>
 </mvvm:BaseContentPage>

@@ -43,7 +43,7 @@ namespace FourplacesApp.ViewModel
             needLogin = "Connection requise";
             Navigation = navigation;
             Connexion = new Command(async () => await ConnexionAsync());
-            Deconnexion = new Command(() => GoDeconnexion());
+            Deconnexion = new Command(async () => await GoDeconnexion());
             PlacesList = new Command(async () => await GoShowPlacesListAsync());
             AddPlace = new Command(async () => await AddPlaceAsync());
             MyProfile = new Command(async () => await GoMyProfileAsync());
@@ -85,15 +85,20 @@ namespace FourplacesApp.ViewModel
         {
             if (Co)
             {
-                //await Navigation.PushAsync(new PlaceView(56));
                 await Navigation.PushAsync(new EditProfile());
             }
         }
 
-        void GoDeconnexion()
+        async Task GoDeconnexion()
         {
+
             App.API.LoginUser.Email = null;
-            App.API.LoginUser.Password = null;
+          
+            await Navigation.PopAsync();
+            await Navigation.PopAsync();
+
+
+
 
         }
 

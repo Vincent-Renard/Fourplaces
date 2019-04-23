@@ -6,15 +6,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackLayout>
-            <Label Text="Enregistrement" />
-            <Entry Text="{Binding FirstName}" Placeholder="Prénom" />
-            <Entry Text="{Binding LastName}" Placeholder="Nom" />
-            <Entry Text="{Binding EMail}" Placeholder="Email" />
-            <Entry Text="{Binding Password1}" Placeholder="Mot de passe " IsPassword="True" />
-            <Entry Text="{Binding Password2}" Placeholder="Répétez le mot de passe " IsPassword="True" />
-            <Button Text="S'enregistrer" Command="{Binding ToSign}" />
-            <Label Text="{Binding BadCredentials}" IsVisible="{Binding BadLogin}" TextColor="Red" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Entry Text="{Binding FirstName}" Placeholder="Prénom" />
+                <Entry Text="{Binding LastName}" Placeholder="Nom" />
+                <Entry Text="{Binding EMail}" Placeholder="Email" />
+                <Entry Text="{Binding Password1}" Placeholder="Mot de passe " IsPassword="True" />
+                <Entry Text="{Binding Password2}" Placeholder="Répétez le mot de passe " IsPassword="True" />
+                <Button Text="S'enregistrer" Command="{Binding ToSign}" />
+                <Label Text="{Binding BadCredentials}" IsVisible="{Binding BadLogin}" TextColor="Red" />
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </mvvm:BaseContentPage>
