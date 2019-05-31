@@ -1,5 +1,6 @@
 # FourplacesApp
 _Vincent Renard_  
+Application développée via le framework Xamarin.
 
 
 
